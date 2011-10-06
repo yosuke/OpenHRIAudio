@@ -3,13 +3,14 @@ PulseAudioInput
 PulseAudioライブラリを使用した音声入力コンポーネント
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ pulseaudioinput
 
 
@@ -19,12 +20,15 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
+   "GainDataIn", "DataInPort", "TimedLong", "音声データ入力"
    "AudioDataOut", "DataOutPort", "TimedOctetSeq", "パケット化した音声データ"
 
 .. digraph:: comp
 
    rankdir=LR;
    PulseAudioInput [shape=Mrecord, label="PulseAudioInput"];
+   GainDataIn [shape=plaintext, label="GainDataIn"];
+   GainDataIn -> PulseAudioInput;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
    PulseAudioInput -> AudioDataOut;
 

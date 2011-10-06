@@ -1,6 +1,6 @@
-EchoSuppressor
-==============
-音響エコー除去コンポーネント
+Mixer
+=====
+Audio mixer component
 
 :Vendor: AIST
 :Version: 1.08
@@ -11,7 +11,7 @@ Usage
 
   ::
 
-  $ echosuppressor
+  $ mixer
 
 
 Ports
@@ -27,11 +27,20 @@ Ports
 .. digraph:: comp
 
    rankdir=LR;
-   EchoSuppressor [shape=Mrecord, label="EchoSuppressor"];
+   Mixer [shape=Mrecord, label="Mixer"];
    AudioDataIn [shape=plaintext, label="AudioDataIn"];
-   AudioDataIn -> EchoSuppressor;
+   AudioDataIn -> Mixer;
    ReferenceAudioDataIn [shape=plaintext, label="ReferenceAudioDataIn"];
-   ReferenceAudioDataIn -> EchoSuppressor;
+   ReferenceAudioDataIn -> Mixer;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
-   EchoSuppressor -> AudioDataOut;
+   Mixer -> AudioDataOut;
+
+Configuration parameters
+------------------------
+.. csv-table:: Configuration parameters
+   :header: "Name", "Description"
+   :widths: 12, 38
+   
+   "OutputChannelNumbers", "Number of output audio channels."
+   "MixGains", "Gains for mixing signals."
 

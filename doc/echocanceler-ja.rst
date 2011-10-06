@@ -3,13 +3,14 @@ EchoCanceler
 適応フィルタ使用した音響エコー除去コンポーネント
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ echocanceler
 
 
@@ -22,7 +23,6 @@ Ports
    "AudioDataIn", "DataInPort", "TimedOctetSeq", "マイクからの音声データ入力"
    "ReferenceAudioDataIn", "DataInPort", "TimedOctetSeq", "音声出力コンポーネントからの音声データ入力"
    "AudioDataOut", "DataOutPort", "TimedOctetSeq", "音声データ出力"
-   "Parameter", "DataOutPort", "TimedDoubleSeq", "適応フィルタの設定値"
 
 .. digraph:: comp
 
@@ -34,14 +34,4 @@ Ports
    ReferenceAudioDataIn -> EchoCanceler;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
    EchoCanceler -> AudioDataOut;
-   Parameter [shape=plaintext, label="Parameter"];
-   EchoCanceler -> Parameter;
-
-Configuration parameters
-------------------------
-.. csv-table:: Configuration parameters
-   :header: "Name", "Description"
-   :widths: 12, 38
-   
-   "Gain", "適応フィルタ倍率"
 

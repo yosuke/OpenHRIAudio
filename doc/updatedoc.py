@@ -21,6 +21,7 @@ comps = [
     ('mixer', 'Mixer'),
     ('autogaincontrol', 'AutoGainControl'),
     ('dsarray', 'DSArray'),
+    ('beamforming', 'BeamForming'),
 ]
 
 tools = [

@@ -1,15 +1,16 @@
 NoiseReduction
 ==============
-Noise reduction component.
+FFT/IFFT based noise reduction component.
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ noisereduction
 
 

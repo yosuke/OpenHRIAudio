@@ -3,13 +3,14 @@ EchoSuppressor
 Acoustic echo cancellation component
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ echosuppressor
 
 

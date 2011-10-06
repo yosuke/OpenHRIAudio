@@ -3,7 +3,7 @@ PortAudioInput
 Audio input component using portaudio
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
@@ -20,12 +20,15 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
+   "GainDataIn", "DataInPort", "TimedLong", "Gain."
    "AudioDataOut", "DataOutPort", "TimedOctetSeq", "Audio data in packet."
 
 .. digraph:: comp
 
    rankdir=LR;
    PortAudioInput [shape=Mrecord, label="PortAudioInput"];
+   GainDataIn [shape=plaintext, label="GainDataIn"];
+   GainDataIn -> PortAudioInput;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
    PortAudioInput -> AudioDataOut;
 

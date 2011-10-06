@@ -3,13 +3,14 @@ EchoCanceler
 Acoustic echo cancellation component using adaptive filter
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ echocanceler
 
 
@@ -22,7 +23,6 @@ Ports
    "AudioDataIn", "DataInPort", "TimedOctetSeq", "Audio data input (from mic)."
    "ReferenceAudioDataIn", "DataInPort", "TimedOctetSeq", "Referenct audio data input (from AudioOuput component)."
    "AudioDataOut", "DataOutPort", "TimedOctetSeq", "Audio data output."
-   "Parameter", "DataOutPort", "TimedDoubleSeq", "Current parameter of adaptive filter."
 
 .. digraph:: comp
 
@@ -34,14 +34,4 @@ Ports
    ReferenceAudioDataIn -> EchoCanceler;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
    EchoCanceler -> AudioDataOut;
-   Parameter [shape=plaintext, label="Parameter"];
-   EchoCanceler -> Parameter;
-
-Configuration parameters
-------------------------
-.. csv-table:: Configuration parameters
-   :header: "Name", "Description"
-   :widths: 12, 38
-   
-   "Gain", "Gain of the adaptive filter"
 

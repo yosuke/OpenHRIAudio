@@ -3,13 +3,14 @@ PortAudioOutput
 PortAudioライブラリを使用した音声出力コンポーネント
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ portaudiooutput
 
 

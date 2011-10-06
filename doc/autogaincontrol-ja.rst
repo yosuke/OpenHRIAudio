@@ -1,6 +1,6 @@
-CombFilter
-==========
-Comb filter noise reduction component.
+AutoGainControl
+===============
+Automatic gain control component
 
 :Vendor: AIST
 :Version: 1.08
@@ -11,7 +11,7 @@ Usage
 
   ::
 
-  $ combfilter
+  $ pulseaudioinput
 
 
 Ports
@@ -21,16 +21,16 @@ Ports
    :widths: 8, 8, 8, 26
    
    "AudioDataIn", "DataInPort", "TimedOctetSeq", "音声データ入力"
-   "AudioDataOut", "DataOutPort", "TimedOctetSeq", "音声データ出力"
+   "AudioDataOut", "DataOutPort", "TimedLong", "Gain."
 
 .. digraph:: comp
 
    rankdir=LR;
-   CombFilter [shape=Mrecord, label="CombFilter"];
+   AutoGainControl [shape=Mrecord, label="AutoGainControl"];
    AudioDataIn [shape=plaintext, label="AudioDataIn"];
-   AudioDataIn -> CombFilter;
+   AudioDataIn -> AutoGainControl;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
-   CombFilter -> AudioDataOut;
+   AutoGainControl -> AudioDataOut;
 
 Configuration parameters
 ------------------------
@@ -38,8 +38,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "SampleRate", "入力音声データのサンプリング周波数設定"
-   "Frequency", ""
-   "Gain", ""
-   "ChannelNumbers", "出力する音声データのチャンネル数設定"
+   "GainCtlSampleByte", ""
+   "InputSampleByte", "録音する音声のフォーマット設定"
+   "AutomaticGainControl", ""
+   "InputChannelNumbers", "出力する音声データのチャンネル数設定"
 

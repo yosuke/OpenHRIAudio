@@ -8,11 +8,11 @@ msgstr ""
 "Project-Id-Version: OpenHRIAudio 1.06\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
 "POT-Creation-Date: 2011-02-14 16:59+0900\n"
-"PO-Revision-Date: 2011-02-14 16:21+0900\n"
-"Last-Translator: Tomoyuki Noguchi <Tomoyuki.Noguchi@guest.aist.go.jp>\n"
+"PO-Revision-Date: 2011-10-06 13:54+0900\n"
+"Last-Translator: Yosuke Matsusaka\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -24,16 +24,20 @@ msgstr "適応フィルタ使用した音響エコー除去コンポーネント
 msgid "Gain of the adaptive filter"
 msgstr "適応フィルタ倍率"
 
-#: src/EchoCanceler.cpp:215 src/EchoSuppressor.cpp:104
+#: src/EchoCanceler.cpp:215
+#: src/EchoSuppressor.cpp:104
 msgid "Audio data input (from mic)."
 msgstr "マイクからの音声データ入力"
 
-#: src/EchoCanceler.cpp:217 src/EchoSuppressor.cpp:106
+#: src/EchoCanceler.cpp:217
+#: src/EchoSuppressor.cpp:106
 msgid "Referenct audio data input (from AudioOuput component)."
 msgstr "音声出力コンポーネントからの音声データ入力"
 
-#: src/EchoCanceler.cpp:220 src/EchoSuppressor.cpp:117
-#: src/NoiseReduction.cpp:258 src/SamplingRateConverter.cpp:115
+#: src/EchoCanceler.cpp:220
+#: src/EchoSuppressor.cpp:117
+#: src/NoiseReduction.cpp:258
+#: src/SamplingRateConverter.cpp:115
 msgid "Audio data output."
 msgstr "音声データ出力"
 
@@ -50,14 +54,11 @@ msgid "Noise reduction component."
 msgstr "ノイズ除去コンポーネント"
 
 #: src/NoiseReduction.cpp:50
-msgid ""
-"Specify filtering method ['premp': Pre-emphasis mode, 'deemp': De-emphasis "
-"mode, 'bpf': Bandpass filter mode]."
-msgstr ""
-"フィルタモード選択 「premp」=プリエンファシスモード、「deemp」=ディエンファシ"
-"スモード、「bpf」=バンドパスフィルタモード"
+msgid "Specify filtering method ['premp': Pre-emphasis mode, 'deemp': De-emphasis mode, 'bpf': Bandpass filter mode]."
+msgstr "フィルタモード選択 「premp」=プリエンファシスモード、「deemp」=ディエンファシスモード、「bpf」=バンドパスフィルタモード"
 
-#: src/NoiseReduction.cpp:53 src/SamplingRateConverter.cpp:46
+#: src/NoiseReduction.cpp:53
+#: src/SamplingRateConverter.cpp:46
 msgid "Sample rate of audio input."
 msgstr "入力音声データのサンプリング周波数設定"
 
@@ -77,8 +78,10 @@ msgstr "バンドパスフィルタモードでの最小周波数"
 msgid "Magnification rate of the emphasis."
 msgstr "強調倍率"
 
-#: src/NoiseReduction.cpp:249 src/PortAudioOutput.cpp:131
-#: src/PulseAudioOutput.cpp:115 src/SamplingRateConverter.cpp:107
+#: src/NoiseReduction.cpp:249
+#: src/PortAudioOutput.cpp:131
+#: src/PulseAudioOutput.cpp:115
+#: src/SamplingRateConverter.cpp:107
 msgid "Audio data input."
 msgstr "音声データ入力"
 
@@ -86,20 +89,25 @@ msgstr "音声データ入力"
 msgid "Audio input component using portaudio"
 msgstr "PulseAudioライブラリを使用した音声入力コンポーネント"
 
-#: src/PortAudioInput.cpp:47 src/PulseAudioInput.cpp:47
+#: src/PortAudioInput.cpp:47
+#: src/PulseAudioInput.cpp:47
 msgid "Sample byte of audio capture."
 msgstr "録音する音声のフォーマット設定"
 
-#: src/PortAudioInput.cpp:50 src/PortAudioOutput.cpp:51
-#: src/PulseAudioInput.cpp:50 src/PulseAudioOutput.cpp:53
+#: src/PortAudioInput.cpp:50
+#: src/PortAudioOutput.cpp:51
+#: src/PulseAudioInput.cpp:50
+#: src/PulseAudioOutput.cpp:53
 msgid "Number of audio channel."
 msgstr "出力する音声データのチャンネル数設定"
 
-#: src/PortAudioInput.cpp:53 src/PulseAudioInput.cpp:53
+#: src/PortAudioInput.cpp:53
+#: src/PulseAudioInput.cpp:53
 msgid "Sample rate of audio capture."
 msgstr "録音する音声のサンプリング周波数設定"
 
-#: src/PortAudioInput.cpp:103 src/PulseAudioInput.cpp:87
+#: src/PortAudioInput.cpp:103
+#: src/PulseAudioInput.cpp:87
 msgid "Audio data in packet."
 msgstr "パケット化した音声データ"
 
@@ -107,11 +115,13 @@ msgstr "パケット化した音声データ"
 msgid "Audio output component using portaudio"
 msgstr "PortAudioライブラリを使用した音声出力コンポーネント"
 
-#: src/PortAudioOutput.cpp:48 src/PulseAudioOutput.cpp:50
+#: src/PortAudioOutput.cpp:48
+#: src/PulseAudioOutput.cpp:50
 msgid "Sample byte of audio output."
 msgstr "出力する音声データのフォーマット設定"
 
-#: src/PortAudioOutput.cpp:54 src/PulseAudioOutput.cpp:56
+#: src/PortAudioOutput.cpp:54
+#: src/PulseAudioOutput.cpp:56
 #: src/SamplingRateConverter.cpp:49
 msgid "Sample rate of audio output."
 msgstr "出力する音声データのサンプリング周波数設定"
@@ -120,7 +130,8 @@ msgstr "出力する音声データのサンプリング周波数設定"
 msgid "Buffer length of audio output."
 msgstr "出力する音声データ長"
 
-#: src/PortAudioOutput.cpp:138 src/PulseAudioOutput.cpp:122
+#: src/PortAudioOutput.cpp:138
+#: src/PulseAudioOutput.cpp:122
 msgid "Actual audio data output."
 msgstr "音声データ出力"
 
@@ -135,3 +146,4 @@ msgstr "PulseAudioライブラリを使用した音声出力コンポーネン�
 #: src/SamplingRateConverter.cpp:34
 msgid "Sampling rate converter"
 msgstr "サンプリング周波数変換"
+

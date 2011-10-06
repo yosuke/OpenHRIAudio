@@ -1,6 +1,6 @@
-CombFilter
-==========
-Comb filter noise reduction component.
+Mixer
+=====
+Audio mixer component
 
 :Vendor: AIST
 :Version: 1.08
@@ -11,7 +11,7 @@ Usage
 
   ::
 
-  $ combfilter
+  $ mixer
 
 
 Ports
@@ -20,17 +20,20 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
-   "AudioDataIn", "DataInPort", "TimedOctetSeq", "Audio data input."
+   "AudioDataIn", "DataInPort", "TimedOctetSeq", "Audio data input (from mic)."
+   "ReferenceAudioDataIn", "DataInPort", "TimedOctetSeq", "Referenct audio data input (from AudioOuput component)."
    "AudioDataOut", "DataOutPort", "TimedOctetSeq", "Audio data output."
 
 .. digraph:: comp
 
    rankdir=LR;
-   CombFilter [shape=Mrecord, label="CombFilter"];
+   Mixer [shape=Mrecord, label="Mixer"];
    AudioDataIn [shape=plaintext, label="AudioDataIn"];
-   AudioDataIn -> CombFilter;
+   AudioDataIn -> Mixer;
+   ReferenceAudioDataIn [shape=plaintext, label="ReferenceAudioDataIn"];
+   ReferenceAudioDataIn -> Mixer;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
-   CombFilter -> AudioDataOut;
+   Mixer -> AudioDataOut;
 
 Configuration parameters
 ------------------------
@@ -38,8 +41,6 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "SampleRate", "Sample rate of audio input."
-   "Frequency", ""
-   "Gain", ""
-   "ChannelNumbers", "Number of audio channel."
+   "OutputChannelNumbers", "Number of output audio channels."
+   "MixGains", "Gains for mixing signals."
 

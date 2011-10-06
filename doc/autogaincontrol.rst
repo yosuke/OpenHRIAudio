@@ -1,6 +1,6 @@
-PulseAudioInput
+AutoGainControl
 ===============
-Audio input component using pulseaudio
+Automatic gain control component
 
 :Vendor: AIST
 :Version: 1.08
@@ -20,17 +20,17 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
-   "GainDataIn", "DataInPort", "TimedLong", "Audio data input."
-   "AudioDataOut", "DataOutPort", "TimedOctetSeq", "Audio data in packet."
+   "AudioDataIn", "DataInPort", "TimedOctetSeq", "Audio data input."
+   "AudioDataOut", "DataOutPort", "TimedLong", "Gain."
 
 .. digraph:: comp
 
    rankdir=LR;
-   PulseAudioInput [shape=Mrecord, label="PulseAudioInput"];
-   GainDataIn [shape=plaintext, label="GainDataIn"];
-   GainDataIn -> PulseAudioInput;
+   AutoGainControl [shape=Mrecord, label="AutoGainControl"];
+   AudioDataIn [shape=plaintext, label="AudioDataIn"];
+   AudioDataIn -> AutoGainControl;
    AudioDataOut [shape=plaintext, label="AudioDataOut"];
-   PulseAudioInput -> AudioDataOut;
+   AutoGainControl -> AudioDataOut;
 
 Configuration parameters
 ------------------------
@@ -38,7 +38,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "InputSampleRate", "Sample rate of audio capture."
-   "InputChannelNumbers", "Number of audio channel."
+   "GainCtlSampleByte", ""
    "InputSampleByte", "Sample byte of audio capture."
+   "AutomaticGainControl", ""
+   "InputChannelNumbers", "Number of audio channel."
 

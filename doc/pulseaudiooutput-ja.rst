@@ -3,13 +3,14 @@ PulseAudioOutput
 PulseAudioライブラリを使用した音声出力コンポーネント
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ pulseaudiooutput
 
 
@@ -37,8 +38,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "DelayCount", ""
    "OutputChannelNumbers", "出力する音声データのチャンネル数設定"
    "OutputSampleByte", "出力する音声データのフォーマット設定"
+   "BufferLength", "Length of buffer (in seconds)."
    "OutputSampleRate", "出力する音声データのサンプリング周波数設定"
 

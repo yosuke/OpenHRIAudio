@@ -3,13 +3,14 @@ PulseAudioOutput
 Audio output component using pulseaudio
 
 :Vendor: AIST
-:Version: 1.06
+:Version: 1.08
 :Category: communication
 
 Usage
 -----
 
   ::
+
   $ pulseaudiooutput
 
 
@@ -37,8 +38,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "DelayCount", ""
    "OutputChannelNumbers", "Number of audio channel."
    "OutputSampleByte", "Sample byte of audio output."
+   "BufferLength", "Length of buffer (in seconds)."
    "OutputSampleRate", "Sample rate of audio output."
 
