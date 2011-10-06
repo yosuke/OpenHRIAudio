@@ -12,6 +12,15 @@
 #include <string>
 #include <stdlib.h>
 #include "DSArray.h"
+#ifdef VERSION
+#undef VERSION
+#endif
+#ifdef HAVE_CONFIG_H
+#include "../config.h"
+#else
+#define VERSION "1.00"
+#endif
+#include <intl.h>
 
 
 void MyModuleInit(RTC::Manager* manager)
@@ -74,6 +83,11 @@ void MyModuleInit(RTC::Manager* manager)
 int main (int argc, char** argv)
 {
   RTC::Manager* manager;
+
+  setlocale(LC_ALL, "");
+  bindtextdomain(PACKAGE, LOCALEDIR);
+  textdomain(PACKAGE);
+
   manager = RTC::Manager::init(argc, argv);
 
   // Initialize manager

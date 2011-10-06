@@ -39,7 +39,7 @@ Configuration parameters
    :widths: 12, 38
    
    "SampleRate", "Sample rate of audio input."
-   "Frequency", ""
-   "Gain", ""
+   "Frequency", "Target frequency to reduce the noise."
+   "Gain", "Degree of gain to add or subtract [1>=x>=-1]."
    "ChannelNumbers", "Number of audio channel."
 

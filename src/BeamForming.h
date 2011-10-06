@@ -290,9 +290,9 @@ class BeamForming
   // DataInPort declaration
   // <rtc-template block="inport_declare">
   TimedOctetSeq m_mic;
-  InPort<TimedOctetSeq> m_micIn;
+  DescriptableInPort<TimedOctetSeq> m_micIn;
   TimedDouble m_angle;
-  InPort<TimedDouble> m_angleIn;
+  DescriptableInPort<TimedDouble> m_angleIn;
 
   // </rtc-template>
 
@@ -300,9 +300,7 @@ class BeamForming
   // DataOutPort declaration
   // <rtc-template block="outport_declare">
   TimedOctetSeq m_result;
-  OutPort<TimedOctetSeq> m_resultOut;
-  TimedDoubleSeq m_para;
-  OutPort<TimedDoubleSeq> m_paraOut;
+  DescriptableOutPort<TimedOctetSeq> m_resultOut;
 
   // </rtc-template>
 

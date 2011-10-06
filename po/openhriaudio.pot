@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhriaudio 1.08\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-10-06 14:15+0900\n"
+"POT-Creation-Date: 2011-10-06 15:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,14 +31,23 @@ msgstr ""
 msgid "Number of audio channel."
 msgstr ""
 
-#: src/AutoGainControl.cpp:118 src/ChannelSelector.cpp:118
-#: src/CombFilter.cpp:116 src/DSArray.cpp:201 src/NoiseReduction.cpp:171
-#: src/PortAudioOutput.cpp:135 src/PulseAudioInput.cpp:115
-#: src/PulseAudioOutput.cpp:131 src/SamplingRateConverter.cpp:121
+#: src/AutoGainControl.cpp:55
+msgid "Automatic gain control parameter."
+msgstr ""
+
+#: src/AutoGainControl.cpp:58
+msgid "Sample byte of gain control."
+msgstr ""
+
+#: src/AutoGainControl.cpp:120 src/BeamForming.cpp:116
+#: src/ChannelSelector.cpp:118 src/CombFilter.cpp:118 src/DSArray.cpp:201
+#: src/NoiseReduction.cpp:171 src/PortAudioOutput.cpp:135
+#: src/PulseAudioInput.cpp:115 src/PulseAudioOutput.cpp:131
+#: src/SamplingRateConverter.cpp:121
 msgid "Audio data input."
 msgstr ""
 
-#: src/AutoGainControl.cpp:127 src/PortAudioInput.cpp:145
+#: src/AutoGainControl.cpp:129 src/PortAudioInput.cpp:145
 msgid "Gain."
 msgstr ""
 
@@ -46,14 +55,33 @@ msgstr ""
 msgid "Sound localization component using microphone array."
 msgstr ""
 
-#: src/BeamForming.cpp:52 src/CombFilter.cpp:48 src/DSArray.cpp:54
+#: src/BeamForming.cpp:48
+msgid "Whether to direct the beam against constant or variable angle."
+msgstr ""
+
+#: src/BeamForming.cpp:51
+msgid "Direction of the beam in constant mode [deg]."
+msgstr ""
+
+#: src/BeamForming.cpp:54 src/CombFilter.cpp:48 src/DSArray.cpp:54
 #: src/NoiseReduction.cpp:61 src/SamplingRateConverter.cpp:48
 #: src/WavRecord.cpp:50
 msgid "Sample rate of audio input."
 msgstr ""
 
-#: src/BeamForming.cpp:55 src/DSArray.cpp:57 src/WavRecord.cpp:53
+#: src/BeamForming.cpp:57 src/DSArray.cpp:57 src/WavRecord.cpp:53
 msgid "Number of audio input channels."
+msgstr ""
+
+#: src/BeamForming.cpp:118
+msgid "Angle data input."
+msgstr ""
+
+#: src/BeamForming.cpp:121 src/ChannelSelector.cpp:126 src/CombFilter.cpp:126
+#: src/DSArray.cpp:206 src/EchoCanceler.cpp:115 src/EchoSuppressor.cpp:119
+#: src/Mixer.cpp:144 src/NoiseReduction.cpp:179
+#: src/SamplingRateConverter.cpp:129
+msgid "Audio data output."
 msgstr ""
 
 #: src/ChannelSelector.cpp:34 src/CombFilter.cpp:34
@@ -68,10 +96,12 @@ msgstr ""
 msgid "Select output audio channel(ch1~)."
 msgstr ""
 
-#: src/ChannelSelector.cpp:126 src/CombFilter.cpp:124 src/DSArray.cpp:206
-#: src/EchoCanceler.cpp:115 src/EchoSuppressor.cpp:119 src/Mixer.cpp:144
-#: src/NoiseReduction.cpp:179 src/SamplingRateConverter.cpp:129
-msgid "Audio data output."
+#: src/CombFilter.cpp:54
+msgid "Target frequency to reduce the noise."
+msgstr ""
+
+#: src/CombFilter.cpp:56
+msgid "Degree of gain to add or subtract [1>=x>=-1]."
 msgstr ""
 
 #: src/EchoCanceler.cpp:34
@@ -137,7 +167,7 @@ msgid "Sample rate of audio capture."
 msgstr ""
 
 #: src/PortAudioInput.cpp:152 src/PulseAudioInput.cpp:124
-#: src/SignalGeneration.cpp:93
+#: src/SignalGeneration.cpp:96
 msgid "Audio data in packet."
 msgstr ""
 
@@ -190,6 +220,22 @@ msgstr ""
 msgid "Signal generation component"
 msgstr ""
 
+#: src/SignalGeneration.cpp:51
+msgid "Frequency of the signal to genarate."
+msgstr ""
+
+#: src/SignalGeneration.cpp:54
+msgid "Amplitude of the signal to generate."
+msgstr ""
+
+#: src/SignalGeneration.cpp:57
+msgid "Mode (Square, Triangle or Sin)."
+msgstr ""
+
 #: src/WavRecord.cpp:37
 msgid "Sound record component."
+msgstr ""
+
+#: src/WavRecord.cpp:54
+msgid "Name of file to save the recorded data."
 msgstr ""

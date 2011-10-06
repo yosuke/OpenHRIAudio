@@ -45,15 +45,17 @@ static const char* beamforming_spec[] =
     "conf.default.ChannelNumbers", "8",
     "conf.__widget__.Mode", "radio",
     "conf.__constraints__.Mode", "(Const, Variable)",
+    "conf.__description__.Mode", N_("Whether to direct the beam against constant or variable angle."),
     "conf.__widget__.ConstAngle", "spin",
     "conf.__constraints__.ConstAngle", "x < 360",
+    "conf.__description__.ConstAngle", N_("Direction of the beam in constant mode [deg]."),
     "conf.__widget__.SampleRate", "spin",
     "conf.__constraints__.SampleRate", "x >= 1",
     "conf.__description__.SampleRate", N_("Sample rate of audio input."),
     "conf.__widget__.ChannelNumbers", "spin",
     "conf.__constraints__.ChannelNumbers", "x >= 2",
     "conf.__description__.ChannelNumbers", N_("Number of audio input channels."),
-    "conf.__doc__.usage", "\n  ::\n  $ beamforming\n",
+    "conf.__doc__.usage", "\n  ::\n\n  $ beamforming\n",
     ""
   };
 // </rtc-template>
@@ -90,8 +92,7 @@ BeamForming::BeamForming(RTC::Manager* manager)
   : RTC::DataFlowComponentBase(manager),
     m_micIn("mic", m_mic),
     m_angleIn("angle", m_angle),
-    m_resultOut("result", m_result),
-    m_paraOut("parameter", m_para)
+    m_resultOut("result", m_result)
 
     // </rtc-template>
 {
@@ -112,10 +113,12 @@ RTC::ReturnCode_t BeamForming::onInitialize()
   addInPort("mic", m_micIn);
   /* setiing datalistener event */
   m_micIn.addConnectorDataListener(ON_BUFFER_WRITE, new DataListener("ON_BUFFER_WRITE", this));
+  m_micIn.setDescription(_("Audio data input."));
   registerInPort("angle", m_angleIn);
+  m_angleIn.setDescription(_("Angle data input."));
   // Set OutPort buffer
   registerOutPort("result", m_resultOut);
-  registerOutPort("parameter", m_paraOut);
+  m_resultOut.setDescription(_("Audio data output."));
 
   // Set service provider to Ports
 
@@ -326,7 +329,14 @@ extern "C"
 {
   void BeamFormingInit(RTC::Manager* manager)
   {
-    coil::Properties profile(beamforming_spec);
+    int i;
+    for (i = 0; strlen(beamforming_spec[i]) != 0; i++);
+    char** spec_intl = new char*[i + 1];
+    for (int j = 0; j < i; j++) {
+      spec_intl[j] = _((char *)beamforming_spec[j]);
+    }
+    spec_intl[i] = (char *)"";
+    coil::Properties profile((const char **)spec_intl);
     manager->registerFactory(profile,
                            RTC::Create<BeamForming>,
                            RTC::Delete<BeamForming>);

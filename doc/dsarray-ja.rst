@@ -1,6 +1,6 @@
 DSArray
 =======
-Sound localization component using microphone array.
+マイクロフォンアレイを用いた音源定位コンポーネント
 
 :Vendor: AIST
 :Version: 1.08
@@ -10,6 +10,7 @@ Usage
 -----
 
   ::
+
   $ dsarray
 
 
@@ -19,8 +20,8 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
-   "mic", "DataInPort", "TimedOctetSeq", "Audio data input."
-   "result", "DataOutPort", "TimedDouble", "Audio data output."
+   "mic", "DataInPort", "TimedOctetSeq", "音声データ入力"
+   "result", "DataOutPort", "TimedDouble", "音声データ出力"
 
 .. digraph:: comp
 
@@ -37,6 +38,6 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "SampleRate", "Sample rate of audio input."
-   "ChannelNumbers", "Number of audio input channels."
+   "SampleRate", "入力音声データのサンプリング周波数設定"
+   "ChannelNumbers", "入力する音声データのチャンネル数設定"
 

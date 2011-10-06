@@ -22,6 +22,7 @@ comps = [
     ('autogaincontrol', 'AutoGainControl'),
     ('dsarray', 'DSArray'),
     ('beamforming', 'BeamForming'),
+    ('wavrecord', 'WavRecord'),
 ]
 
 tools = [

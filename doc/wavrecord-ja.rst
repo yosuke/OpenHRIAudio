@@ -1,6 +1,6 @@
-CombFilter
-==========
-コムフィルタを用いたノイズ除去コンポーネント
+WavRecord
+=========
+録音コンポーネント
 
 :Vendor: AIST
 :Version: 1.08
@@ -11,7 +11,7 @@ Usage
 
   ::
 
-  $ combfilter
+  $ wavrecord
 
 
 Ports
@@ -21,16 +21,13 @@ Ports
    :widths: 8, 8, 8, 26
    
    "AudioDataIn", "DataInPort", "TimedOctetSeq", "音声データ入力"
-   "AudioDataOut", "DataOutPort", "TimedOctetSeq", "音声データ出力"
 
 .. digraph:: comp
 
    rankdir=LR;
-   CombFilter [shape=Mrecord, label="CombFilter"];
+   WavRecord [shape=Mrecord, label="WavRecord"];
    AudioDataIn [shape=plaintext, label="AudioDataIn"];
-   AudioDataIn -> CombFilter;
-   AudioDataOut [shape=plaintext, label="AudioDataOut"];
-   CombFilter -> AudioDataOut;
+   AudioDataIn -> WavRecord;
 
 Configuration parameters
 ------------------------
@@ -39,7 +36,6 @@ Configuration parameters
    :widths: 12, 38
    
    "SampleRate", "入力音声データのサンプリング周波数設定"
-   "Frequency", "ノイズを削減する周波数"
-   "Gain", "加減算する度合い [1>=x>=-1]"
-   "ChannelNumbers", "出力する音声データのチャンネル数設定"
+   "FileName", "録音したデータを保存するファイル名"
+   "ChannelNumbers", "入力する音声データのチャンネル数設定"
 

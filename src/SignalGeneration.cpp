@@ -48,10 +48,13 @@ static const char* signalgeneration_spec[] =
     "conf.__description__.OutputSampleRate", N_("Sample rate of audio output."),
     "conf.__widget__.Frequency", "spin",
     "conf.__constraints__.Frequency", "x >= 1",
+    "conf.__description__.Frequency", N_("Frequency of the signal to genarate."),
     "conf.__widget__.Gain", "spin",
     "conf.__constraints__.Gain", "x >= 1",
+    "conf.__description__.Gain", N_("Amplitude of the signal to generate."),
     "conf.__widget__.Mode", "radio",
     "conf.__constraints__.Mode", "(Square, Triangle, Sin)",
+    "conf.__description__.Mode", N_("Mode (Square, Triangle or Sin)."),
     "conf.__doc__.usage", "\n  ::\n\n  $ signalgeneration\n",
     ""
   };

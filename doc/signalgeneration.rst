@@ -35,8 +35,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "Mode", ""
-   "Frequency", ""
-   "Gain", ""
+   "Mode", "Mode (Square, Triangle or Sin)."
+   "Frequency", "Frequency of the signal to genarate."
+   "Gain", "Amplitude of the signal to generate."
    "OutputSampleRate", "Sample rate of audio output."
 

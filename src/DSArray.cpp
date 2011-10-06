@@ -55,7 +55,7 @@ static const char* dsarray_spec[] =
     "conf.__widget__.ChannelNumbers", "spin",
     "conf.__constraints__.ChannelNumbers", "x >= 2",
     "conf.__description__.ChannelNumbers", N_("Number of audio input channels."),
-    "conf.__doc__.usage", "\n  ::\n  $ dsarray\n",
+    "conf.__doc__.usage", "\n  ::\n\n  $ dsarray\n",
     ""
   };
 // </rtc-template>
@@ -197,13 +197,13 @@ RTC::ReturnCode_t DSArray::onInitialize()
   // Registration: InPort/OutPort/Service
   // <rtc-template block="registration">
   // Set InPort buffers
-  addInPort ("mic", m_micIn);
-  m_micIn.setDescription (N_("Audio data input."));
+  addInPort("mic", m_micIn);
+  m_micIn.setDescription(_("Audio data input."));
   /* setiing datalistener event */
   m_micIn.addConnectorDataListener(ON_BUFFER_WRITE, new DataListener("ON_BUFFER_WRITE", this));
   // Set OutPort buffer
   registerOutPort("result", m_resultOut);
-  m_resultOut.setDescription(N_("Audio data output."));
+  m_resultOut.setDescription(_("Audio data output."));
 
   // Set service provider to Ports
 
@@ -595,7 +595,14 @@ extern "C"
 {
   void DSArrayInit(RTC::Manager* manager)
   {
-    coil::Properties profile(dsarray_spec);
+    int i;
+    for (i = 0; strlen(dsarray_spec[i]) != 0; i++);
+    char** spec_intl = new char*[i + 1];
+    for (int j = 0; j < i; j++) {
+      spec_intl[j] = _((char *)dsarray_spec[j]);
+    }
+    spec_intl[i] = (char *)"";
+    coil::Properties profile((const char **)spec_intl);
     manager->registerFactory(profile,
                            RTC::Create<DSArray>,
                            RTC::Delete<DSArray>);

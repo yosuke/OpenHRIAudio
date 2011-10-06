@@ -1,6 +1,6 @@
 BeamForming
 ===========
-Sound localization component using microphone array.
+マイクロフォンアレイを用いた音源定位コンポーネント
 
 :Vendor: AIST
 :Version: 0.0.1
@@ -10,6 +10,7 @@ Usage
 -----
 
   ::
+
   $ beamforming
 
 
@@ -19,10 +20,9 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
-   "mic", "DataInPort", "TimedOctetSeq", ""
-   "angle", "DataInPort", "TimedDouble", ""
-   "result", "DataOutPort", "TimedOctetSeq", ""
-   "parameter", "DataOutPort", "TimedDoubleSeq", ""
+   "mic", "DataInPort", "TimedOctetSeq", "音声データ入力"
+   "angle", "DataInPort", "TimedDouble", "角度データ入力"
+   "result", "DataOutPort", "TimedOctetSeq", "音声データ出力"
 
 .. digraph:: comp
 
@@ -34,8 +34,6 @@ Ports
    angle -> BeamForming;
    result [shape=plaintext, label="result"];
    BeamForming -> result;
-   parameter [shape=plaintext, label="parameter"];
-   BeamForming -> parameter;
 
 Configuration parameters
 ------------------------
@@ -43,8 +41,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "SampleRate", "Sample rate of audio input."
-   "ConstAngle", ""
-   "Mode", ""
-   "ChannelNumbers", "Number of audio input channels."
+   "SampleRate", "入力音声データのサンプリング周波数設定"
+   "ConstAngle", "固定角度モードにおけるビームを向ける角度の設定 [deg]"
+   "Mode", "ビームを固定角度に向けるか可変角度に向けるかの設定"
+   "ChannelNumbers", "入力する音声データのチャンネル数設定"
 

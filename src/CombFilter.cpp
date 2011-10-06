@@ -51,7 +51,9 @@ static const char* combfilter_spec[] =
     "conf.__description__.ChannelNumbers", N_("Number of audio channel."),
     "conf.__widget__.Frequency", "spin",
     "conf.__constraints__.Frequency", "x >= 0",
+    "conf.__description__.Frequency", N_("Target frequency to reduce the noise."),
     "conf.__widget__.Gain", "spin",
+    "conf.__description__.Gain", N_("Degree of gain to add or subtract [1>=x>=-1]."),
     "conf.__doc__.usage", "\n  ::\n\n  $ combfilter\n",
     ""
   };

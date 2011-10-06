@@ -52,9 +52,11 @@ static const char* autogaincontrol_spec[] =
     "conf.__description__.InputChannelNumbers", N_("Number of audio channel."),
     "conf.__widget__.AutomaticGainControl", "spin",
     "conf.__constraints__.AutomaticGainControl", "x >= 0",
+    "conf.__description__.AutomaticGainControl", N_("Automatic gain control parameter."),
     "conf.__widget__.GainCtlSampleByte", "radio",
     "conf.__constraints__.GainCtlSampleByte", "(int8, int16, int24, int32)",
-    "conf.__doc__.usage", "\n  ::\n\n  $ pulseaudioinput\n",
+    "conf.__description__.GainCtlSampleByte", N_("Sample byte of gain control."),
+    "conf.__doc__.usage", "\n  ::\n\n  $ autogaincontrol\n",
     ""
   };
 // </rtc-template>

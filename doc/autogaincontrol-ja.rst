@@ -11,7 +11,7 @@ Usage
 
   ::
 
-  $ pulseaudioinput
+  $ autogaincontrol
 
 
 Ports
@@ -38,8 +38,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "GainCtlSampleByte", ""
+   "GainCtlSampleByte", "ゲイン調整のバイト数"
    "InputSampleByte", "録音する音声のフォーマット設定"
-   "AutomaticGainControl", ""
+   "AutomaticGainControl", "ゲイン調整パラメータ"
    "InputChannelNumbers", "出力する音声データのチャンネル数設定"
 

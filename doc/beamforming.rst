@@ -10,6 +10,7 @@ Usage
 -----
 
   ::
+
   $ beamforming
 
 
@@ -19,10 +20,9 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
-   "mic", "DataInPort", "TimedOctetSeq", ""
-   "angle", "DataInPort", "TimedDouble", ""
-   "result", "DataOutPort", "TimedOctetSeq", ""
-   "parameter", "DataOutPort", "TimedDoubleSeq", ""
+   "mic", "DataInPort", "TimedOctetSeq", "Audio data input."
+   "angle", "DataInPort", "TimedDouble", "Angle data input."
+   "result", "DataOutPort", "TimedOctetSeq", "Audio data output."
 
 .. digraph:: comp
 
@@ -34,8 +34,6 @@ Ports
    angle -> BeamForming;
    result [shape=plaintext, label="result"];
    BeamForming -> result;
-   parameter [shape=plaintext, label="parameter"];
-   BeamForming -> parameter;
 
 Configuration parameters
 ------------------------
@@ -44,7 +42,7 @@ Configuration parameters
    :widths: 12, 38
    
    "SampleRate", "Sample rate of audio input."
-   "ConstAngle", ""
-   "Mode", ""
+   "ConstAngle", "Direction of the beam in constant mode [deg]."
+   "Mode", "Whether to direct the beam against constant or variable angle."
    "ChannelNumbers", "Number of audio input channels."
 

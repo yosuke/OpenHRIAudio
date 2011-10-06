@@ -35,8 +35,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "Mode", ""
-   "Frequency", ""
-   "Gain", ""
+   "Mode", "モード（矩形波、三角波、サイン波）"
+   "Frequency", "生成する信号の周波数"
+   "Gain", "生成する信号の振幅"
    "OutputSampleRate", "出力する音声データのサンプリング周波数設定"
 

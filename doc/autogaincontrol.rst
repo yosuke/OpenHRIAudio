@@ -11,7 +11,7 @@ Usage
 
   ::
 
-  $ pulseaudioinput
+  $ autogaincontrol
 
 
 Ports
@@ -38,8 +38,8 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "GainCtlSampleByte", ""
+   "GainCtlSampleByte", "Sample byte of gain control."
    "InputSampleByte", "Sample byte of audio capture."
-   "AutomaticGainControl", ""
+   "AutomaticGainControl", "Automatic gain control parameter."
    "InputChannelNumbers", "Number of audio channel."
 

@@ -44,14 +44,15 @@ static const char* wavrecord_spec[] =
     "lang_type",         "script",
     "conf.default.SampleRate", "16000",
     "conf.default.ChannelNumbers", "1",
-    "conf.default.FileName", "",
+    "conf.default.FileName", "wavrecord-default.wav",
     "conf.__widget__.SampleRate", "spin",
     "conf.__constraints__.SampleRate", "x >= 1",
     "conf.__description__.SampleRate", N_("Sample rate of audio input."),
     "conf.__widget__.ChannelNumbers", "spin",
     "conf.__constraints__.ChannelNumbers", "x >= 1",
     "conf.__description__.ChannelNumbers", N_("Number of audio input channels."),
-    "conf.__doc__.usage", "\n  ::\n  $ wavrecord\n",
+    "conf.__description__.FileName", N_("Name of file to save the recorded data."),
+    "conf.__doc__.usage", "\n  ::\n\n  $ wavrecord\n",
     ""
   };
 // </rtc-template>
@@ -107,6 +108,7 @@ RTC::ReturnCode_t WavRecord::onInitialize()
   // <rtc-template block="registration">
   // Set InPort buffers
   m_in_dataIn.addConnectorDataListener(ON_BUFFER_WRITE, new DataListener("ON_BUFFER_WRITE", this));
+  m_in_dataIn.setDescription(_("Audio data input."));
   registerInPort("AudioDataIn", m_in_dataIn);
 
   // Set service provider to Ports
@@ -180,7 +182,14 @@ extern "C"
 {
   void WavRecordInit(RTC::Manager* manager)
   {
-    coil::Properties profile(wavrecord_spec);
+    int i;
+    for (i = 0; strlen(wavrecord_spec[i]) != 0; i++);
+    char** spec_intl = new char*[i + 1];
+    for (int j = 0; j < i; j++) {
+      spec_intl[j] = _((char *)wavrecord_spec[j]);
+    }
+    spec_intl[i] = (char *)"";
+    coil::Properties profile((const char **)spec_intl);
     manager->registerFactory(profile,
                              RTC::Create<WavRecord>,
                              RTC::Delete<WavRecord>);
