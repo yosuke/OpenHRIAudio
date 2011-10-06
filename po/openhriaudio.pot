@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: openhriaudio 1.06\n"
+"Project-Id-Version: openhriaudio 1.08\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-02-14 16:59+0900\n"
+"POT-Creation-Date: 2011-10-06 14:15+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,88 +16,128 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: src/AutoGainControl.cpp:35
+msgid "Automatic gain control component"
+msgstr ""
+
+#: src/AutoGainControl.cpp:49 src/ChannelSelector.cpp:54
+#: src/PortAudioInput.cpp:61 src/PulseAudioInput.cpp:47
+msgid "Sample byte of audio capture."
+msgstr ""
+
+#: src/AutoGainControl.cpp:52 src/CombFilter.cpp:51 src/PortAudioInput.cpp:64
+#: src/PortAudioOutput.cpp:51 src/PulseAudioInput.cpp:50
+#: src/PulseAudioOutput.cpp:53
+msgid "Number of audio channel."
+msgstr ""
+
+#: src/AutoGainControl.cpp:118 src/ChannelSelector.cpp:118
+#: src/CombFilter.cpp:116 src/DSArray.cpp:201 src/NoiseReduction.cpp:171
+#: src/PortAudioOutput.cpp:135 src/PulseAudioInput.cpp:115
+#: src/PulseAudioOutput.cpp:131 src/SamplingRateConverter.cpp:121
+msgid "Audio data input."
+msgstr ""
+
+#: src/AutoGainControl.cpp:127 src/PortAudioInput.cpp:145
+msgid "Gain."
+msgstr ""
+
+#: src/BeamForming.cpp:34 src/DSArray.cpp:42
+msgid "Sound localization component using microphone array."
+msgstr ""
+
+#: src/BeamForming.cpp:52 src/CombFilter.cpp:48 src/DSArray.cpp:54
+#: src/NoiseReduction.cpp:61 src/SamplingRateConverter.cpp:48
+#: src/WavRecord.cpp:50
+msgid "Sample rate of audio input."
+msgstr ""
+
+#: src/BeamForming.cpp:55 src/DSArray.cpp:57 src/WavRecord.cpp:53
+msgid "Number of audio input channels."
+msgstr ""
+
+#: src/ChannelSelector.cpp:34 src/CombFilter.cpp:34
+msgid "Comb filter noise reduction component."
+msgstr ""
+
+#: src/ChannelSelector.cpp:48
+msgid "Number of input audio channels."
+msgstr ""
+
+#: src/ChannelSelector.cpp:51
+msgid "Select output audio channel(ch1~)."
+msgstr ""
+
+#: src/ChannelSelector.cpp:126 src/CombFilter.cpp:124 src/DSArray.cpp:206
+#: src/EchoCanceler.cpp:115 src/EchoSuppressor.cpp:119 src/Mixer.cpp:144
+#: src/NoiseReduction.cpp:179 src/SamplingRateConverter.cpp:129
+msgid "Audio data output."
+msgstr ""
+
 #: src/EchoCanceler.cpp:34
 msgid "Acoustic echo cancellation component using adaptive filter"
 msgstr ""
 
-#: src/EchoCanceler.cpp:45
-msgid "Gain of the adaptive filter"
-msgstr ""
-
-#: src/EchoCanceler.cpp:215 src/EchoSuppressor.cpp:104
+#: src/EchoCanceler.cpp:110 src/EchoSuppressor.cpp:106 src/Mixer.cpp:131
 msgid "Audio data input (from mic)."
 msgstr ""
 
-#: src/EchoCanceler.cpp:217 src/EchoSuppressor.cpp:106
+#: src/EchoCanceler.cpp:112 src/EchoSuppressor.cpp:108 src/Mixer.cpp:133
 msgid "Referenct audio data input (from AudioOuput component)."
-msgstr ""
-
-#: src/EchoCanceler.cpp:220 src/EchoSuppressor.cpp:117
-#: src/NoiseReduction.cpp:258 src/SamplingRateConverter.cpp:115
-msgid "Audio data output."
-msgstr ""
-
-#: src/EchoCanceler.cpp:222
-msgid "Current parameter of adaptive filter."
 msgstr ""
 
 #: src/EchoSuppressor.cpp:34
 msgid "Acoustic echo cancellation component"
 msgstr ""
 
-#: src/NoiseReduction.cpp:34
-msgid "Noise reduction component."
+#: src/Mixer.cpp:53
+msgid "Audio mixer component"
 msgstr ""
 
-#: src/NoiseReduction.cpp:50
+#: src/Mixer.cpp:64
+msgid "Number of output audio channels."
+msgstr ""
+
+#: src/Mixer.cpp:66
+msgid "Gains for mixing signals."
+msgstr ""
+
+#: src/NoiseReduction.cpp:42
+msgid "FFT/IFFT based noise reduction component."
+msgstr ""
+
+#: src/NoiseReduction.cpp:58
 msgid ""
 "Specify filtering method ['premp': Pre-emphasis mode, 'deemp': De-emphasis "
 "mode, 'bpf': Bandpass filter mode]."
 msgstr ""
 
-#: src/NoiseReduction.cpp:53 src/SamplingRateConverter.cpp:46
-msgid "Sample rate of audio input."
-msgstr ""
-
-#: src/NoiseReduction.cpp:56
+#: src/NoiseReduction.cpp:64
 msgid "Center frequency (effective in 'premp' and 'deemp' mode."
 msgstr ""
 
-#: src/NoiseReduction.cpp:59
+#: src/NoiseReduction.cpp:67
 msgid "Max frequency (effective in 'bpf' mode."
 msgstr ""
 
-#: src/NoiseReduction.cpp:62
+#: src/NoiseReduction.cpp:70
 msgid "Min frequency (effective in 'bpf' mode."
 msgstr ""
 
-#: src/NoiseReduction.cpp:65
+#: src/NoiseReduction.cpp:73
 msgid "Magnification rate of the emphasis."
 msgstr ""
 
-#: src/NoiseReduction.cpp:249 src/PortAudioOutput.cpp:131
-#: src/PulseAudioOutput.cpp:115 src/SamplingRateConverter.cpp:107
-msgid "Audio data input."
-msgstr ""
-
-#: src/PortAudioInput.cpp:34
+#: src/PortAudioInput.cpp:48
 msgid "Audio input component using portaudio"
 msgstr ""
 
-#: src/PortAudioInput.cpp:47 src/PulseAudioInput.cpp:47
-msgid "Sample byte of audio capture."
-msgstr ""
-
-#: src/PortAudioInput.cpp:50 src/PortAudioOutput.cpp:51
-#: src/PulseAudioInput.cpp:50 src/PulseAudioOutput.cpp:53
-msgid "Number of audio channel."
-msgstr ""
-
-#: src/PortAudioInput.cpp:53 src/PulseAudioInput.cpp:53
+#: src/PortAudioInput.cpp:67 src/PulseAudioInput.cpp:53
 msgid "Sample rate of audio capture."
 msgstr ""
 
-#: src/PortAudioInput.cpp:103 src/PulseAudioInput.cpp:87
+#: src/PortAudioInput.cpp:152 src/PulseAudioInput.cpp:124
+#: src/SignalGeneration.cpp:93
 msgid "Audio data in packet."
 msgstr ""
 
@@ -110,7 +150,7 @@ msgid "Sample byte of audio output."
 msgstr ""
 
 #: src/PortAudioOutput.cpp:54 src/PulseAudioOutput.cpp:56
-#: src/SamplingRateConverter.cpp:49
+#: src/SamplingRateConverter.cpp:51 src/SignalGeneration.cpp:48
 msgid "Sample rate of audio output."
 msgstr ""
 
@@ -118,7 +158,7 @@ msgstr ""
 msgid "Buffer length of audio output."
 msgstr ""
 
-#: src/PortAudioOutput.cpp:138 src/PulseAudioOutput.cpp:122
+#: src/PortAudioOutput.cpp:142 src/PulseAudioOutput.cpp:138
 msgid "Actual audio data output."
 msgstr ""
 
@@ -130,6 +170,26 @@ msgstr ""
 msgid "Audio output component using pulseaudio"
 msgstr ""
 
+#: src/PulseAudioOutput.cpp:59
+msgid "Length of buffer (in seconds)."
+msgstr ""
+
 #: src/SamplingRateConverter.cpp:34
 msgid "Sampling rate converter"
+msgstr ""
+
+#: src/SamplingRateConverter.cpp:54
+msgid "Bit depth of audio input."
+msgstr ""
+
+#: src/SamplingRateConverter.cpp:57
+msgid "Bit depth of audio output."
+msgstr ""
+
+#: src/SignalGeneration.cpp:34
+msgid "Signal generation component"
+msgstr ""
+
+#: src/WavRecord.cpp:37
+msgid "Sound record component."
 msgstr ""

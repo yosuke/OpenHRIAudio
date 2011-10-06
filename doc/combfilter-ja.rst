@@ -1,6 +1,6 @@
 CombFilter
 ==========
-Comb filter noise reduction component.
+コムフィルタを用いたノイズ除去コンポーネント
 
 :Vendor: AIST
 :Version: 1.08

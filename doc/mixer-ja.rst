@@ -1,6 +1,6 @@
 Mixer
 =====
-Audio mixer component
+オーディオミキサーコンポーネント
 
 :Vendor: AIST
 :Version: 1.08
@@ -41,6 +41,6 @@ Configuration parameters
    :header: "Name", "Description"
    :widths: 12, 38
    
-   "OutputChannelNumbers", "Number of output audio channels."
-   "MixGains", "Gains for mixing signals."
+   "OutputChannelNumbers", "出力する音声データのチャンネル数"
+   "MixGains", "各チャンネルの混合重み"
 

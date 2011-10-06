@@ -40,6 +40,6 @@ Configuration parameters
    
    "OutputChannelNumbers", "出力する音声データのチャンネル数設定"
    "OutputSampleByte", "出力する音声データのフォーマット設定"
-   "BufferLength", "Length of buffer (in seconds)."
+   "BufferLength", "バッファ長（秒）"
    "OutputSampleRate", "出力する音声データのサンプリング周波数設定"
 

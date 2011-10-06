@@ -1,6 +1,6 @@
 SignalGeneration
 ================
-Signal generation component
+信号生成コンポーネント
 
 :Vendor: AIST
 :Version: 1.08

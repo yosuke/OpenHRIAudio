@@ -1,6 +1,6 @@
 AutoGainControl
 ===============
-Automatic gain control component
+ゲイン調整コンポーネント
 
 :Vendor: AIST
 :Version: 1.08
@@ -21,7 +21,7 @@ Ports
    :widths: 8, 8, 8, 26
    
    "AudioDataIn", "DataInPort", "TimedOctetSeq", "音声データ入力"
-   "AudioDataOut", "DataOutPort", "TimedLong", "Gain."
+   "AudioDataOut", "DataOutPort", "TimedLong", "ゲイン"
 
 .. digraph:: comp
 

@@ -20,7 +20,7 @@ Ports
    :header: "Name", "Type", "DataType", "Description"
    :widths: 8, 8, 8, 26
    
-   "GainDataIn", "DataInPort", "TimedLong", "Gain."
+   "GainDataIn", "DataInPort", "TimedLong", "ゲイン"
    "AudioDataOut", "DataOutPort", "TimedOctetSeq", "パケット化した音声データ"
 
 .. digraph:: comp

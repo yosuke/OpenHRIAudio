@@ -1,6 +1,6 @@
 NoiseReduction
 ==============
-FFT/IFFT based noise reduction component.
+FFT/IFFTを用いたノイズ除去コンポーネント
 
 :Vendor: AIST
 :Version: 1.08
