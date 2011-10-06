@@ -1,0 +1,6 @@
+This software has been developed by AIST OpenHRI development team.
+
+Yosuke Matsusaka : Architecture design. Python programming.
+Tomoyuki Noguchi : Porting to C++. Implementation of audio libraries.
+
+For more information, please contact Yosuke Matsusaka <yosuke.matsusaka@aist.go.jp>.

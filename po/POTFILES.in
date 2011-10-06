@@ -1,0 +1,16 @@
+./src/EchoCanceler.cpp
+./src/EchoCancelerComp.cpp
+./src/EchoSuppressor.cpp
+./src/EchoSuppressorComp.cpp
+./src/NoiseReduction.cpp
+./src/NoiseReductionComp.cpp
+./src/PortAudioInput.cpp
+./src/PortAudioInputComp.cpp
+./src/PortAudioOutput.cpp
+./src/PortAudioOutputComp.cpp
+./src/PulseAudioInput.cpp
+./src/PulseAudioInputComp.cpp
+./src/PulseAudioOutput.cpp
+./src/PulseAudioOutputComp.cpp
+./src/SamplingRateConverter.cpp
+./src/SamplingRateConverterComp.cpp

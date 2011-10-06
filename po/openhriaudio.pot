@@ -1,0 +1,135 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR AIST-OpenHRI Project
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: openhriaudio 1.06\n"
+"Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
+"POT-Creation-Date: 2011-02-14 16:59+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/EchoCanceler.cpp:34
+msgid "Acoustic echo cancellation component using adaptive filter"
+msgstr ""
+
+#: src/EchoCanceler.cpp:45
+msgid "Gain of the adaptive filter"
+msgstr ""
+
+#: src/EchoCanceler.cpp:215 src/EchoSuppressor.cpp:104
+msgid "Audio data input (from mic)."
+msgstr ""
+
+#: src/EchoCanceler.cpp:217 src/EchoSuppressor.cpp:106
+msgid "Referenct audio data input (from AudioOuput component)."
+msgstr ""
+
+#: src/EchoCanceler.cpp:220 src/EchoSuppressor.cpp:117
+#: src/NoiseReduction.cpp:258 src/SamplingRateConverter.cpp:115
+msgid "Audio data output."
+msgstr ""
+
+#: src/EchoCanceler.cpp:222
+msgid "Current parameter of adaptive filter."
+msgstr ""
+
+#: src/EchoSuppressor.cpp:34
+msgid "Acoustic echo cancellation component"
+msgstr ""
+
+#: src/NoiseReduction.cpp:34
+msgid "Noise reduction component."
+msgstr ""
+
+#: src/NoiseReduction.cpp:50
+msgid ""
+"Specify filtering method ['premp': Pre-emphasis mode, 'deemp': De-emphasis "
+"mode, 'bpf': Bandpass filter mode]."
+msgstr ""
+
+#: src/NoiseReduction.cpp:53 src/SamplingRateConverter.cpp:46
+msgid "Sample rate of audio input."
+msgstr ""
+
+#: src/NoiseReduction.cpp:56
+msgid "Center frequency (effective in 'premp' and 'deemp' mode."
+msgstr ""
+
+#: src/NoiseReduction.cpp:59
+msgid "Max frequency (effective in 'bpf' mode."
+msgstr ""
+
+#: src/NoiseReduction.cpp:62
+msgid "Min frequency (effective in 'bpf' mode."
+msgstr ""
+
+#: src/NoiseReduction.cpp:65
+msgid "Magnification rate of the emphasis."
+msgstr ""
+
+#: src/NoiseReduction.cpp:249 src/PortAudioOutput.cpp:131
+#: src/PulseAudioOutput.cpp:115 src/SamplingRateConverter.cpp:107
+msgid "Audio data input."
+msgstr ""
+
+#: src/PortAudioInput.cpp:34
+msgid "Audio input component using portaudio"
+msgstr ""
+
+#: src/PortAudioInput.cpp:47 src/PulseAudioInput.cpp:47
+msgid "Sample byte of audio capture."
+msgstr ""
+
+#: src/PortAudioInput.cpp:50 src/PortAudioOutput.cpp:51
+#: src/PulseAudioInput.cpp:50 src/PulseAudioOutput.cpp:53
+msgid "Number of audio channel."
+msgstr ""
+
+#: src/PortAudioInput.cpp:53 src/PulseAudioInput.cpp:53
+msgid "Sample rate of audio capture."
+msgstr ""
+
+#: src/PortAudioInput.cpp:103 src/PulseAudioInput.cpp:87
+msgid "Audio data in packet."
+msgstr ""
+
+#: src/PortAudioOutput.cpp:34
+msgid "Audio output component using portaudio"
+msgstr ""
+
+#: src/PortAudioOutput.cpp:48 src/PulseAudioOutput.cpp:50
+msgid "Sample byte of audio output."
+msgstr ""
+
+#: src/PortAudioOutput.cpp:54 src/PulseAudioOutput.cpp:56
+#: src/SamplingRateConverter.cpp:49
+msgid "Sample rate of audio output."
+msgstr ""
+
+#: src/PortAudioOutput.cpp:57
+msgid "Buffer length of audio output."
+msgstr ""
+
+#: src/PortAudioOutput.cpp:138 src/PulseAudioOutput.cpp:122
+msgid "Actual audio data output."
+msgstr ""
+
+#: src/PulseAudioInput.cpp:34
+msgid "Audio input component using pulseaudio"
+msgstr ""
+
+#: src/PulseAudioOutput.cpp:36
+msgid "Audio output component using pulseaudio"
+msgstr ""
+
+#: src/SamplingRateConverter.cpp:34
+msgid "Sampling rate converter"
+msgstr ""
