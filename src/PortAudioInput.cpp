@@ -393,7 +393,7 @@ RTC::ReturnCode_t PortAudioInput::onActivated(RTC::UniqueId ec_id)
     } else {
       CloseMixer();
     }
-#else if defined(__linux)
+#elif defined(__linux)
     const char* sound_device_names[] = SOUND_DEVICE_NAMES;
     m_device = -1;
     m_fd = -1;
@@ -449,7 +449,7 @@ void PortAudioInput::SetGain(long m_gain)
     vol = vol * m_gain;
     SetMicrophoneLevel(vol);
   }
-#else if defined(__linux)
+#elif defined(__linux)
   int level = (int)m_gain;
   if ( ( m_fd > 0 ) && ( m_device > 0 ) ) {
     if ( ioctl( m_fd, MIXER_WRITE( m_device ), &level ) == -1 ) {
@@ -533,7 +533,7 @@ RTC::ReturnCode_t PortAudioInput::onDeactivated(RTC::UniqueId ec_id)
       }
 #ifdef HAVE_LIBPORTMIXER
       Px_CloseMixer(m_mixer);
-#else if defined(__linux)
+#elif defined(__linux)
       if ( m_fd > 0 ) {
         close( m_fd );
         m_fd = -1;

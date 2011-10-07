@@ -20,7 +20,7 @@
 #else
 #define VERSION "1.00"
 #endif
-#include <intl.h>
+#include "intl.h"
 
 
 void MyModuleInit(RTC::Manager* manager)
