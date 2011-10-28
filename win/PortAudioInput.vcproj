@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="PortAudioInputComp"
-	ProjectGUID="{2FF8769B-F386-40FA-A171-D1522481D848}"
+	ProjectGUID="{52CC308C-4002-4AC2-A3A7-90F151CDC2E4}"
 	RootNamespace="PortAudioInput"
 	TargetFrameworkVersion="196613"
 	>
@@ -165,8 +165,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine=""
-				ExcludedFromBuild="true"
+				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\PortAudioInputComp.exe&quot; &quot;$(SolutionDir)\\components\\PortAudioInput.exe&quot;&#x0D;&#x0A;"
+				ExcludedFromBuild="false"
 			/>
 		</Configuration>
 	</Configurations>

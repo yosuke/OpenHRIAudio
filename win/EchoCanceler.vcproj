@@ -165,8 +165,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\EchoCanceler.exe&quot; &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;"
-				ExcludedFromBuild="true"
+				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\EchoCancelerComp.exe&quot; &quot;$(SolutionDir)\\components\\EchoCanceler.exe&quot;&#x0D;&#x0A;"
+				ExcludedFromBuild="false"
 			/>
 		</Configuration>
 	</Configurations>

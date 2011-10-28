@@ -165,8 +165,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\BeamForming.exe&quot; &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;"
-				ExcludedFromBuild="true"
+				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\BeamFormingComp.exe&quot; &quot;$(SolutionDir)\\components\\BeamForming.exe&quot;&#x0D;&#x0A;"
+				ExcludedFromBuild="false"
 			/>
 		</Configuration>
 	</Configurations>
