@@ -5,10 +5,10 @@
  */
 
 #include <iostream>
-#ifdef __linux
+#if defined(__linux)
 #include <dlfcn.h>
 #include <link.h>
-#else ifdef _WIN32
+#elif defined(_WIN32)
 #include <stdlib.h>
 #include <stdio.h>
 #include <windows.h>
@@ -78,7 +78,8 @@ protected:
   RTC::Manager* manager;
 };
 #endif
-#ifdef _WIN32
+
+#if defined(_WIN32)
 #define COMPNUM 14
 RTC::Manager* g_manager;
 bool loadlist[COMPNUM];
@@ -87,13 +88,13 @@ BOOL CALLBACK DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
   switch( msg ){
   case WM_INITDIALOG:
-      for (int i = 0; i < COMPNUM; i++) {
-        if ( loadlist[i] == false ) {
-          EnableWindow( GetDlgItem( hWnd, (1000 + i) ), false);
-        }
+    for (int i = 0; i < COMPNUM; i++) {
+      if ( loadlist[i] == false ) {
+	EnableWindow( GetDlgItem( hWnd, (1000 + i) ), false);
       }
-      g_manager->createComponent("PortAudioInput");
-      g_manager->createComponent("PortAudioOutput");
+    }
+    g_manager->createComponent("PortAudioInput");
+    g_manager->createComponent("PortAudioOutput");
     break;
   case WM_CLOSE:
     EndDialog(hWnd , ID_OK);
@@ -142,9 +143,9 @@ BOOL CALLBACK DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     case ID_WAVEREC:
       g_manager->createComponent("WavRecord");
       break;
-	}
+    }
   }
-
+  
   return FALSE;
 }
 #endif
@@ -156,7 +157,7 @@ int main (int argc, char** argv)
   std::vector<std::string> components;
   components.push_back("PortAudioOutput");
   components.push_back("PortAudioInput");
-#ifdef __linux
+#if defined(__linux)
   components.push_back("PulseAudioOutput");
   components.push_back("PulseAudioInput");
 #endif
@@ -174,10 +175,9 @@ int main (int argc, char** argv)
   components.push_back("WavRecord");
 
   manager = RTC::Manager::init(argc, argv);
-//  manager->init(argc, argv);
   manager->activateManager();
 
-#ifdef __linux
+#if defined(__linux)
   for (unsigned int i = 0; i < components.size(); i++) {
     std::string lower = components[i];
     std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);   
@@ -188,14 +188,13 @@ int main (int argc, char** argv)
       free(path);
     }
   }
-#else ifdef _WIN32
+#elif defined(_WIN32)
   HANDLE hFind;
   WIN32_FIND_DATA fd;
   for (unsigned int i = 0; i < components.size(); i++) {
     loadlist[i] = false;
     std::string lower = components[i];
     std::string dllname = lower + ".dll";
-//    std::string dllname = "C:\\work\\OpenHRI\\win\\" + lower + "\\Debug\\" + lower + ".dll";
     hFind = FindFirstFile(dllname.c_str(), &fd);
     if ( hFind != INVALID_HANDLE_VALUE ) {
       path = (char *)dllname.c_str();
@@ -208,7 +207,7 @@ int main (int argc, char** argv)
     FindClose(hFind);
   }
 #endif
-#ifdef HAVE_GTKMM
+#if defined(HAVE_GTKMM)
   manager->runManager(true);
   Gtk::Main kit(argc, argv);
   MenuWindow menuwindow;
@@ -216,13 +215,12 @@ int main (int argc, char** argv)
   menuwindow.setComponents(components);
   Gtk::Main::run(menuwindow);
   manager->terminate();
-#else ifdef _WIN32
+#elif defined(_WIN32)
   manager->runManager(true);
   HINSTANCE hInst = GetModuleHandle( NULL );
   g_manager = manager;
   DialogBox( hInst, "MENUDLG", NULL, ( DLGPROC )DlgProc );
   manager->terminate();
-
 #endif
 
   return 0;

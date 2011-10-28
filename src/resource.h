@@ -1,4 +1,3 @@
-
 #define ID_OK 1
 #define ID_CANCEL -1
 #define ID_PORTAUDIOOUTPUT  1000

@@ -89,9 +89,9 @@ DataListener::~DataListener()
 void DataListener::operator ()(const ConnectorInfo& info, const TimedLong& data)
 {
   if ( m_name == "ON_BUFFER_WRITE" ) {
-      PortAudioInput *p = (PortAudioInput *)m_obj;
-      p->SetGain(data.data);
-    }
+    PortAudioInput *p = (PortAudioInput *)m_obj;
+    p->SetGain(data.data);
+  }
 }
 
 int StreamCB( const void *inputBuffer,
@@ -203,9 +203,9 @@ bool PortAudioInput::InitMixer(void)
     mmresult = mixerOpen( &m_mixer[i], (UINT)i, 0, 0, MIXER_OBJECTF_MIXER );
     if ( mmresult == MMSYSERR_NOERROR ) {
       m_barrOpened[i] = true;
-	  m_isOpen = true;
+      m_isOpen = true;
       mmresult = mixerGetLineInfo( (HMIXEROBJ)m_mixer[i], &mxl,
-                 MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_COMPONENTTYPE);
+				   MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_COMPONENTTYPE);
       if ( mmresult == MMSYSERR_NOERROR ) {
         m_mixerMic = m_mixer[i];
         break;
@@ -217,11 +217,11 @@ bool PortAudioInput::InitMixer(void)
   for ( DWORD i = 0; i < mxl.cConnections; i++ ) {
     mxl.dwSource = i;
     mmresult = mixerGetLineInfo( (HMIXEROBJ)m_mixerMic, &mxl,
-               MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_SOURCE);
+				 MIXER_OBJECTF_HMIXER | MIXER_GETLINEINFOF_SOURCE);
     if ( mmresult != MMSYSERR_NOERROR ) {
       break;
     }
-	if ( mxl.dwComponentType == MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE ) {
+    if ( mxl.dwComponentType == MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE ) {
       dwLineID = mxl.dwLineID;
       break;
     }
@@ -236,10 +236,9 @@ bool PortAudioInput::InitMixer(void)
   mxlc.cControls = 1;
   mxlc.cbmxctrl = sizeof(MIXERCONTROL);
   mxlc.pamxctrl = &mxc;
-  mmresult = mixerGetLineControls(
-             reinterpret_cast<HMIXEROBJ>(m_mixerMic),
-             &mxlc,
-             MIXER_OBJECTF_HMIXER | MIXER_GETLINECONTROLSF_ONEBYTYPE);
+  mmresult = mixerGetLineControls(reinterpret_cast<HMIXEROBJ>(m_mixerMic),
+				  &mxlc,
+				  MIXER_OBJECTF_HMIXER | MIXER_GETLINECONTROLSF_ONEBYTYPE);
   if ( mmresult != MMSYSERR_NOERROR ) return false;
   m_dwCntlID = mxc.dwControlID;
   m_dwMax = mxc.Bounds.dwMaximum;
@@ -273,10 +272,9 @@ bool PortAudioInput::GetMicrophoneLevel(DWORD* dwLevel)
   mxcd.cMultipleItems = 0;
   mxcd.cbDetails = sizeof(MIXERCONTROLDETAILS_UNSIGNED);
   mxcd.paDetails = &mxcdVolume;
-  mmresult = mixerGetControlDetails(
-             reinterpret_cast<HMIXEROBJ>(m_mixerMic),
-             &mxcd,
-             MIXER_GETCONTROLDETAILSF_VALUE);
+  mmresult = mixerGetControlDetails(reinterpret_cast<HMIXEROBJ>(m_mixerMic),
+				    &mxcd,
+				    MIXER_GETCONTROLDETAILSF_VALUE);
   if (mmresult != MMSYSERR_NOERROR) return false;
   *dwLevel = mxcdVolume.dwValue;
   return true;
@@ -296,8 +294,8 @@ bool PortAudioInput::SetMicrophoneLevel(DWORD dwLevel)
   mxcd_Set.cbDetails = sizeof(MIXERCONTROLDETAILS_UNSIGNED);
   mxcd_Set.paDetails = &mxcdVolume_Set;
   mmresult = mixerSetControlDetails(reinterpret_cast<HMIXEROBJ>(m_mixerMic),
-             &mxcd_Set,
-             MIXER_OBJECTF_HMIXER | MIXER_SETCONTROLDETAILSF_VALUE);
+				    &mxcd_Set,
+				    MIXER_OBJECTF_HMIXER | MIXER_SETCONTROLDETAILSF_VALUE);
   return ( mmresult == MMSYSERR_NOERROR );
 }
 #elif defined(__linux)
@@ -338,7 +336,7 @@ RTC::ReturnCode_t PortAudioInput::onActivated(RTC::UniqueId ec_id)
 //#if 0
     PaDeviceIndex dnum = Pa_GetDeviceCount();
     for (int i = 0; i < (int)dnum; i++) {
-	  std::cout << "Device Index " << i << " : " << Pa_GetDeviceInfo(i)->name << ", inch " << Pa_GetDeviceInfo(i)->maxInputChannels << ", outch " << Pa_GetDeviceInfo(i)->maxOutputChannels << std::endl;
+      std::cout << "Device Index " << i << " : " << Pa_GetDeviceInfo(i)->name << ", inch " << Pa_GetDeviceInfo(i)->maxInputChannels << ", outch " << Pa_GetDeviceInfo(i)->maxOutputChannels << std::endl;
     }
 //#endif
     void *pFormat;
@@ -351,7 +349,8 @@ RTC::ReturnCode_t PortAudioInput::onActivated(RTC::UniqueId ec_id)
     if ( inputParameters.device < 0 ) {
       throw (paNotInitialized);
     }
-    if ( m_channels > Pa_GetDeviceInfo(inputParameters.device)->maxInputChannels ) m_channels = Pa_GetDeviceInfo(inputParameters.device)->maxInputChannels;
+    if ( m_channels > Pa_GetDeviceInfo(inputParameters.device)->maxInputChannels )
+      m_channels = Pa_GetDeviceInfo(inputParameters.device)->maxInputChannels;
     inputParameters.channelCount = m_channels;
     inputParameters.sampleFormat = m_format;
     inputParameters.suggestedLatency = Pa_GetDeviceInfo( inputParameters.device )->defaultLowInputLatency;
