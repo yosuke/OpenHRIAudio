@@ -241,7 +241,7 @@ RTC::ReturnCode_t DSArray::onActivated(RTC::UniqueId ec_id)
         m_micinfo[i].x = (double)wk_x;
         m_micinfo[i].y = (double)wk_y;
         m_micinfo[i].z = (double)wk_z;
-		if (( wk_y != 0.0 ) || ( wk_z != 0.0 )) {
+	if (( wk_y != 0.0 ) || ( wk_z != 0.0 )) {
           m_horizon = false;
         }
         dwk = sqrt( wk_x * wk_x + wk_y * wk_y );

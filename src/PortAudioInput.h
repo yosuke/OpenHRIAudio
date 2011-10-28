@@ -28,7 +28,7 @@
 #if defined(_WIN32)
 #include <windows.h>
 #include <mmsystem.h>
-#else if defined(__linux)
+#elif defined(__linux)
 #include <sys/ioctl.h>
 #include <sys/soundcard.h>
 #include <fcntl.h>
@@ -352,7 +352,7 @@ class PortAudioInput
   int m_mixerNums;
   bool m_isOpen;
   DWORD m_dwCntlID,m_dwMin,m_dwMax;
-#else if defined(__linux)
+#elif defined(__linux)
   int m_device,m_fd;
 #endif
 #endif

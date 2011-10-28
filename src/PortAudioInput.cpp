@@ -300,7 +300,7 @@ bool PortAudioInput::SetMicrophoneLevel(DWORD dwLevel)
              MIXER_OBJECTF_HMIXER | MIXER_SETCONTROLDETAILSF_VALUE);
   return ( mmresult == MMSYSERR_NOERROR );
 }
-#else if defined(__linux)
+#elif defined(__linux)
 
 #endif
 
