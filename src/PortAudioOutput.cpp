@@ -25,9 +25,11 @@
 #endif
 #include "intl.h"
 
+extern coil::Mutex m_pa_mutex;
+
 // Module specification
 // <rtc-template block="module_spec">
-static const char* portaudiooutput_spec[] =
+const char* portaudiooutput_spec[] =
   {
     "implementation_id", "PortAudioOutput",
     "type_name",         "PortAudioOutput",
@@ -63,7 +65,7 @@ static const char* portaudiooutput_spec[] =
 /*!
  * @brief constructor
  */
-DataListener::DataListener(const char *name, void* data)
+PortAudioOutputDataListener::PortAudioOutputDataListener(const char *name, void* data)
 {
   m_obj = data;
   m_name = name;
@@ -72,11 +74,11 @@ DataListener::DataListener(const char *name, void* data)
 /*!
  * @brief destructor
  */
-DataListener::~DataListener()
+PortAudioOutputDataListener::~PortAudioOutputDataListener()
 {
 }
 
-void DataListener::operator ()(const ConnectorInfo& info, const TimedOctetSeq& data)
+void PortAudioOutputDataListener::operator ()(const ConnectorInfo& info, const TimedOctetSeq& data)
 {
   if ( m_name == "ON_BUFFER_WRITE" ) {
     PortAudioOutput *p = (PortAudioOutput *)m_obj;
@@ -84,12 +86,12 @@ void DataListener::operator ()(const ConnectorInfo& info, const TimedOctetSeq& d
   }
 }
 
-int StreamCB( const void *inputBuffer,
-              void *outputBuffer,
-              unsigned long framesPerBuffer,
-              const PaStreamCallbackTimeInfo *timeInfo,
-              PaStreamCallbackFlags statusFlags,
-              void *userData )
+static int StreamCB( const void *inputBuffer,
+		     void *outputBuffer,
+		     unsigned long framesPerBuffer,
+		     const PaStreamCallbackTimeInfo *timeInfo,
+		     PaStreamCallbackFlags statusFlags,
+		     void *userData )
 {
   PortAudioOutput *p = (PortAudioOutput *)userData;
   unsigned long nbytes = p->m_totalframes;
@@ -135,7 +137,7 @@ RTC::ReturnCode_t PortAudioOutput::onInitialize()
   m_in_dataIn.setDescription(_("Audio data input."));
 
   /* setiing datalistener event */
-  m_in_dataIn.addConnectorDataListener(ON_BUFFER_WRITE, new DataListener("ON_BUFFER_WRITE", this), false);
+  m_in_dataIn.addConnectorDataListener(ON_BUFFER_WRITE, new PortAudioOutputDataListener("ON_BUFFER_WRITE", this), false);
 
   // Set OutPort buffer
   registerOutPort("AudioDataOut", m_out_dataOut);
@@ -178,10 +180,7 @@ RTC::ReturnCode_t PortAudioOutput::onActivated(RTC::UniqueId ec_id)
   PaStreamParameters outputParameters;
 
   try {
-    m_err = Pa_Initialize();
-    if ( m_err != paNoError ) {
-      throw m_err;
-    }
+    m_pa_mutex.lock();
 
     m_format = getFormat(m_formatstr);
     m_totalframes = FRAMES_PER_BUFFER * m_channels;
@@ -221,6 +220,7 @@ RTC::ReturnCode_t PortAudioOutput::onActivated(RTC::UniqueId ec_id)
       throw m_err;
     }
 
+    m_pa_mutex.unlock();
   } catch (...) {
     std::string error_str = Pa_GetErrorText(m_err);
     RTC_WARN(("PortAudio failed onActivated:%s", error_str.c_str()));
@@ -300,6 +300,7 @@ void PortAudioOutput::WriteBufferCB(void *data, unsigned long fream_len)
 int PortAudioOutput::WriteBuffer(void)
 {
   //! Input data(queue buffer) is output to the device
+  m_pa_mutex.lock();
   m_mutex.lock();
   RTC_DEBUG(("WriteBuffer:mutex lock"));
   if (Pa_IsStreamActive(m_stream)) {
@@ -341,6 +342,7 @@ int PortAudioOutput::WriteBuffer(void)
     }
   }
   m_mutex.unlock();
+  m_pa_mutex.unlock();
   RTC_DEBUG(("WriteBuffer:mutex unlock"));
   return 0;
 }
@@ -407,7 +409,6 @@ RTC::ReturnCode_t PortAudioOutput::onFinalize()
     RTC_WARN(("PortAudio Stream close failed onFinalize:%s", error_str.c_str()));
     return RTC::RTC_ERROR;
   }
-  Pa_Terminate();
   m_mutex.unlock();
   RTC_DEBUG(("onFinalize:mutex unlock"));
   RTC_DEBUG(("onFinalize finish"));
@@ -418,10 +419,18 @@ extern "C"
 {
   void PortAudioOutputInit(RTC::Manager* manager)
   {
-    int i;
+    int i, j;
+    PaError m_err;
+    
+    m_err = Pa_Initialize();
+    if(m_err != paNoError) {
+      printf("PortAudio failed: %s\n", Pa_GetErrorText(m_err));
+      return;
+    }
+
     for (i = 0; strlen(portaudiooutput_spec[i]) != 0; i++);
     char** spec_intl = new char*[i + 1];
-    for (int j = 0; j < i; j++) {
+    for (j = 0; j < i; j++) {
       spec_intl[j] = (char *)_(portaudiooutput_spec[j]);
     }
     spec_intl[i] = (char *)"";

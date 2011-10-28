@@ -39,9 +39,11 @@ extern "C" {
 }
 #endif
 
+extern coil::Mutex m_pa_mutex;
+
 // Module specification
 // <rtc-template block="module_spec">
-static const char* portaudioinput_spec[] =
+const char* portaudioinput_spec[] =
   {
     "implementation_id", "PortAudioInput",
     "type_name",         "PortAudioInput",
@@ -73,7 +75,7 @@ static const char* portaudioinput_spec[] =
 /*!
  * @brief constructor
  */
-DataListener::DataListener(const char *name, void* data)
+PortAudioInputDataListener::PortAudioInputDataListener(const char *name, void* data)
 {
   m_obj = data;
   m_name = name;
@@ -82,11 +84,11 @@ DataListener::DataListener(const char *name, void* data)
 /*!
  * @brief destructor
  */
-DataListener::~DataListener()
+PortAudioInputDataListener::~PortAudioInputDataListener()
 {
 }
 
-void DataListener::operator ()(const ConnectorInfo& info, const TimedLong& data)
+void PortAudioInputDataListener::operator ()(const ConnectorInfo& info, const TimedLong& data)
 {
   if ( m_name == "ON_BUFFER_WRITE" ) {
     PortAudioInput *p = (PortAudioInput *)m_obj;
@@ -94,12 +96,12 @@ void DataListener::operator ()(const ConnectorInfo& info, const TimedLong& data)
   }
 }
 
-int StreamCB( const void *inputBuffer,
-	      void *outputBuffer,
-	      unsigned long framesPerBuffer,
-	      const PaStreamCallbackTimeInfo *timeInfo,
-	      PaStreamCallbackFlags statusFlags,
-	      void *userData )
+static int StreamCB( const void *inputBuffer,
+		     void *outputBuffer,
+		     unsigned long framesPerBuffer,
+		     const PaStreamCallbackTimeInfo *timeInfo,
+		     PaStreamCallbackFlags statusFlags,
+		     void *userData )
 {
   PortAudioInput *p = (PortAudioInput *)userData;
   unsigned long nbytes = p->m_totalframes;
@@ -145,7 +147,7 @@ RTC::ReturnCode_t PortAudioInput::onInitialize()
   m_in_dataIn.setDescription(_("Gain."));
 
   /* setting datalistener event */
-  m_in_dataIn.addConnectorDataListener(ON_BUFFER_WRITE, new DataListener("ON_BUFFER_WRITE", this), false);
+  m_in_dataIn.addConnectorDataListener(ON_BUFFER_WRITE, new PortAudioInputDataListener("ON_BUFFER_WRITE", this), false);
 
   // Set OutPort buffer
   registerOutPort("AudioDataOut", m_out_dataOut);
@@ -309,12 +311,7 @@ RTC::ReturnCode_t PortAudioInput::onActivated(RTC::UniqueId ec_id)
 //  PaWasapiStreamInfo wasapiinfo;
 
   try {
-//    System &amp;sys = System::instance();
-
-    m_err = Pa_Initialize();
-    if( m_err != paNoError ) {
-      throw m_err;
-    }
+    m_pa_mutex.lock();
 
     m_format = getFormat(m_formatstr);
     m_totalframes = FRAMES_PER_BUFFER * m_channels;
@@ -414,6 +411,7 @@ RTC::ReturnCode_t PortAudioInput::onActivated(RTC::UniqueId ec_id)
       throw m_err;
     }
 
+    m_pa_mutex.unlock();
   } catch (...) {
     std::string error_str = Pa_GetErrorText(m_err);
     RTC_WARN(("PortAudio failed onActivated:%s", error_str.c_str()));
@@ -583,7 +581,6 @@ RTC::ReturnCode_t PortAudioInput::onFinalize()
     RTC_WARN(("PortAudio Stream close failed onFinalize:%s", error_str.c_str()));
     return RTC::RTC_ERROR;
   }
-  Pa_Terminate();
   m_mutex.unlock();
   RTC_DEBUG(("onFinalize:mutex unlock"));
   RTC_DEBUG(("onFinalize finish"));
@@ -594,16 +591,24 @@ extern "C"
 {
   void PortAudioInputInit(RTC::Manager* manager)
   {
-    int i;
+    int i, j;
+    PaError m_err;
+    
+    m_err = Pa_Initialize();
+    if(m_err != paNoError) {
+      printf("PortAudio failed: %s\n", Pa_GetErrorText(m_err));
+      return;
+    }
+
     for (i = 0; strlen(portaudioinput_spec[i]) != 0; i++);
     char** spec_intl = new char*[i + 1];
-    for (int j = 0; j < i; j++) {
+    for (j = 0; j < i; j++) {
       spec_intl[j] = (char *)_(portaudioinput_spec[j]);
     }
     spec_intl[i] = (char *)"";
     coil::Properties profile((const char **)spec_intl);
     manager->registerFactory(profile,
-                           RTC::Create<PortAudioInput>,
-                           RTC::Delete<PortAudioInput>);
+			     RTC::Create<PortAudioInput>,
+			     RTC::Delete<PortAudioInput>);
   }
 };

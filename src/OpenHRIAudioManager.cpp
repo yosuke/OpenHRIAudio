@@ -93,8 +93,8 @@ BOOL CALLBACK DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 	EnableWindow( GetDlgItem( hWnd, (1000 + i) ), false);
       }
     }
-    g_manager->createComponent("PortAudioInput");
-    g_manager->createComponent("PortAudioOutput");
+    //g_manager->createComponent("PortAudioInput");
+    //g_manager->createComponent("PortAudioOutput");
     break;
   case WM_CLOSE:
     EndDialog(hWnd , ID_OK);
@@ -155,11 +155,11 @@ int main (int argc, char** argv)
   char *path;
   RTC::Manager* manager;
   std::vector<std::string> components;
-  components.push_back("PortAudioOutput");
-  components.push_back("PortAudioInput");
 #if defined(__linux)
   components.push_back("PulseAudioOutput");
   components.push_back("PulseAudioInput");
+#elif defined(_WIN32)
+  components.push_back("PortAudioRTC");
 #endif
   components.push_back("EchoCanceler");
   components.push_back("EchoSuppressor");

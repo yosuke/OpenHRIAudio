@@ -1,5 +1,5 @@
 bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord
-lib_LTLIBRARIES = libportaudiooutput.la libportaudioinput.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la
+lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la
 
 LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) $(GTKMM_LIBS) -lm @LTLIBINTL@
 AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) $(GTKMM_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\"
@@ -8,13 +8,13 @@ include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAud
 
 openhriaudiomanager_SOURCES = OpenHRIAudioManager.cpp
 
-libportaudiooutput_la_SOURCES = PortAudioOutput.cpp
-portaudiooutput_SOURCES = PortAudioOutputComp.cpp
-portaudiooutput_LDADD = libportaudiooutput.la
+libportaudiortc_la_SOURCES = PortAudioInput.cpp PortAudioOutput.cpp PortAudioRTC.cpp
 
-libportaudioinput_la_SOURCES = PortAudioInput.cpp
 portaudioinput_SOURCES = PortAudioInputComp.cpp
-portaudioinput_LDADD = libportaudioinput.la
+portaudioinput_LDADD = libportaudiortc.la
+
+portaudiooutput_SOURCES = PortAudioOutputComp.cpp
+portaudiooutput_LDADD = libportaudiortc.la
 
 libpulseaudiooutput_la_SOURCES = PulseAudioOutput.cpp
 pulseaudiooutput_SOURCES = PulseAudioOutputComp.cpp

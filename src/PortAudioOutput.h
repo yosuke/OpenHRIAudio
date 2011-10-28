@@ -53,25 +53,25 @@
 using namespace RTC;
 
 /*!
- * @class DataListener
+ * @class PortAudioOutputDataListener
  * @brief
  */
-class DataListener
+class PortAudioOutputDataListener
   : public ConnectorDataListenerT<RTC::TimedOctetSeq>
 {
 public:
   /*!
    * @brief constructor
    *
-   * @param name DataListener event name
+   * @param name PortAudioOutputDataListener event name
    * @param data PortAudio Object
    */
-  DataListener(const char* name, void *data);
+  PortAudioOutputDataListener(const char* name, void *data);
 
   /*!
    * @brief destructor
    */
-  virtual ~DataListener();
+  virtual ~PortAudioOutputDataListener();
   virtual void operator()(const ConnectorInfo& info,
                           const TimedOctetSeq& data);
   void *m_obj;

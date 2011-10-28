@@ -70,7 +70,7 @@ using namespace RTC;
  * @class DataListener
  * @brief
  */
-class DataListener
+class PortAudioInputDataListener
   : public ConnectorDataListenerT<RTC::TimedLong>
 {
 public:
@@ -80,12 +80,12 @@ public:
    * @param name DataListener event name
    * @param data PortAudio Object
    */
-  DataListener(const char* name, void *data);
+  PortAudioInputDataListener(const char* name, void *data);
 
   /*!
    * @brief destructor
    */
-  virtual ~DataListener();
+  virtual ~PortAudioInputDataListener();
   virtual void operator()(const ConnectorInfo& info,
                           const TimedLong& data);
   void *m_obj;
