@@ -11,7 +11,7 @@
   !include "LogicLib.nsh"
 
 !define PACKAGE_NAME "OpenHRIAudio"
-!define PACKAGE_VERSION "1.09"
+!define PACKAGE_VERSION "2.00"
 !define OUTFILE "${PACKAGE_NAME}-${PACKAGE_VERSION}-installer.exe"
 !define TOP_SRCDIR "..\.."
 !define TOP_BUILDDIR "..\.."
@@ -125,13 +125,13 @@ Section $(TEXT_SecBase) SecBase
 ;  File "${TOP_BUILDDIR}\win\libspeexdsp.dll"
   File "${TOP_BUILDDIR}\win\libresample.dll"
   File "${TOP_BUILDDIR}\win\libsndfile-1.dll"
-${If} ${RunningX64}
+;${If} ${RunningX64}
   File "C:\Program Files (x86)\omniORB-4.1.4\bin\x86_win32\*.dll"
   File "C:\Program Files (x86)\OpenRTM-aist\1.0\bin\*.dll"
-${Else}
+;${Else}
 ;  File "C:\Program Files\omniORB-4.1.4\bin\x86_win32\*.dll"
 ;  File "C:\Program Files\OpenRTM-aist\1.0\bin\*.dll"
-${EndIf}
+;${EndIf}
   File "rtc.conf"
 
   ; Information/documentation files
