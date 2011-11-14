@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenHRIAudio 1.06\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-10-06 15:37+0900\n"
-"PO-Revision-Date: 2011-10-06 15:41+0900\n"
+"POT-Creation-Date: 2011-11-14 15:48+0900\n"
+"PO-Revision-Date: 2011-11-14 15:50+0900\n"
 "Last-Translator: Yosuke Matsusaka\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,15 +22,15 @@ msgstr "ゲイン調整コンポーネント"
 
 #: src/AutoGainControl.cpp:49
 #: src/ChannelSelector.cpp:54
-#: src/PortAudioInput.cpp:61
+#: src/PortAudioInput.cpp:63
 #: src/PulseAudioInput.cpp:47
 msgid "Sample byte of audio capture."
 msgstr "録音する音声のフォーマット設定"
 
 #: src/AutoGainControl.cpp:52
 #: src/CombFilter.cpp:51
-#: src/PortAudioInput.cpp:64
-#: src/PortAudioOutput.cpp:51
+#: src/PortAudioInput.cpp:66
+#: src/PortAudioOutput.cpp:53
 #: src/PulseAudioInput.cpp:50
 #: src/PulseAudioOutput.cpp:53
 msgid "Number of audio channel."
@@ -50,15 +50,16 @@ msgstr "ゲイン調整のバイト数"
 #: src/CombFilter.cpp:118
 #: src/DSArray.cpp:201
 #: src/NoiseReduction.cpp:171
-#: src/PortAudioOutput.cpp:135
+#: src/PortAudioOutput.cpp:137
 #: src/PulseAudioInput.cpp:115
 #: src/PulseAudioOutput.cpp:131
 #: src/SamplingRateConverter.cpp:121
+#: src/WavRecord.cpp:111
 msgid "Audio data input."
 msgstr "音声データ入力"
 
 #: src/AutoGainControl.cpp:129
-#: src/PortAudioInput.cpp:145
+#: src/PortAudioInput.cpp:147
 msgid "Gain."
 msgstr "ゲイン"
 
@@ -183,42 +184,42 @@ msgstr "バンドパスフィルタモードでの最小周波数"
 msgid "Magnification rate of the emphasis."
 msgstr "強調倍率"
 
-#: src/PortAudioInput.cpp:48
+#: src/PortAudioInput.cpp:50
 msgid "Audio input component using portaudio"
 msgstr "PulseAudioライブラリを使用した音声入力コンポーネント"
 
-#: src/PortAudioInput.cpp:67
+#: src/PortAudioInput.cpp:69
 #: src/PulseAudioInput.cpp:53
 msgid "Sample rate of audio capture."
 msgstr "録音する音声のサンプリング周波数設定"
 
-#: src/PortAudioInput.cpp:152
+#: src/PortAudioInput.cpp:154
 #: src/PulseAudioInput.cpp:124
 #: src/SignalGeneration.cpp:96
 msgid "Audio data in packet."
 msgstr "パケット化した音声データ"
 
-#: src/PortAudioOutput.cpp:34
+#: src/PortAudioOutput.cpp:36
 msgid "Audio output component using portaudio"
 msgstr "PortAudioライブラリを使用した音声出力コンポーネント"
 
-#: src/PortAudioOutput.cpp:48
+#: src/PortAudioOutput.cpp:50
 #: src/PulseAudioOutput.cpp:50
 msgid "Sample byte of audio output."
 msgstr "出力する音声データのフォーマット設定"
 
-#: src/PortAudioOutput.cpp:54
+#: src/PortAudioOutput.cpp:56
 #: src/PulseAudioOutput.cpp:56
 #: src/SamplingRateConverter.cpp:51
 #: src/SignalGeneration.cpp:48
 msgid "Sample rate of audio output."
 msgstr "出力する音声データのサンプリング周波数設定"
 
-#: src/PortAudioOutput.cpp:57
+#: src/PortAudioOutput.cpp:59
 msgid "Buffer length of audio output."
 msgstr "出力する音声データ長"
 
-#: src/PortAudioOutput.cpp:142
+#: src/PortAudioOutput.cpp:144
 #: src/PulseAudioOutput.cpp:138
 msgid "Actual audio data output."
 msgstr "音声データ出力"
