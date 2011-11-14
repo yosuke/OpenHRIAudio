@@ -4,7 +4,7 @@ lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.l
 LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) $(GTKMM_LIBS) -lm @LTLIBINTL@
 AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) $(GTKMM_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\"
 
-include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h
+include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h windowing.h
 
 openhriaudiomanager_SOURCES = OpenHRIAudioManager.cpp
 

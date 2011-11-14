@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: openhriaudio 1.08\n"
+"Project-Id-Version: openhriaudio 2.00\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-11-14 15:48+0900\n"
+"POT-Creation-Date: 2011-11-14 15:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

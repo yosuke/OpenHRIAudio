@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenHRIAudio 1.06\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-11-14 15:48+0900\n"
+"POT-Creation-Date: 2011-11-14 15:53+0900\n"
 "PO-Revision-Date: 2011-11-14 15:50+0900\n"
 "Last-Translator: Yosuke Matsusaka\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
@@ -20,18 +20,13 @@ msgstr ""
 msgid "Automatic gain control component"
 msgstr "ゲイン調整コンポーネント"
 
-#: src/AutoGainControl.cpp:49
-#: src/ChannelSelector.cpp:54
-#: src/PortAudioInput.cpp:63
-#: src/PulseAudioInput.cpp:47
+#: src/AutoGainControl.cpp:49 src/ChannelSelector.cpp:54
+#: src/PortAudioInput.cpp:63 src/PulseAudioInput.cpp:47
 msgid "Sample byte of audio capture."
 msgstr "録音する音声のフォーマット設定"
 
-#: src/AutoGainControl.cpp:52
-#: src/CombFilter.cpp:51
-#: src/PortAudioInput.cpp:66
-#: src/PortAudioOutput.cpp:53
-#: src/PulseAudioInput.cpp:50
+#: src/AutoGainControl.cpp:52 src/CombFilter.cpp:51 src/PortAudioInput.cpp:66
+#: src/PortAudioOutput.cpp:53 src/PulseAudioInput.cpp:50
 #: src/PulseAudioOutput.cpp:53
 msgid "Number of audio channel."
 msgstr "出力する音声データのチャンネル数設定"
@@ -44,27 +39,19 @@ msgstr "ゲイン調整パラメータ"
 msgid "Sample byte of gain control."
 msgstr "ゲイン調整のバイト数"
 
-#: src/AutoGainControl.cpp:120
-#: src/BeamForming.cpp:116
-#: src/ChannelSelector.cpp:118
-#: src/CombFilter.cpp:118
-#: src/DSArray.cpp:201
-#: src/NoiseReduction.cpp:171
-#: src/PortAudioOutput.cpp:137
-#: src/PulseAudioInput.cpp:115
-#: src/PulseAudioOutput.cpp:131
-#: src/SamplingRateConverter.cpp:121
-#: src/WavRecord.cpp:111
+#: src/AutoGainControl.cpp:120 src/BeamForming.cpp:116
+#: src/ChannelSelector.cpp:118 src/CombFilter.cpp:118 src/DSArray.cpp:201
+#: src/NoiseReduction.cpp:171 src/PortAudioOutput.cpp:137
+#: src/PulseAudioInput.cpp:115 src/PulseAudioOutput.cpp:131
+#: src/SamplingRateConverter.cpp:121 src/WavRecord.cpp:111
 msgid "Audio data input."
 msgstr "音声データ入力"
 
-#: src/AutoGainControl.cpp:129
-#: src/PortAudioInput.cpp:147
+#: src/AutoGainControl.cpp:129 src/PortAudioInput.cpp:147
 msgid "Gain."
 msgstr "ゲイン"
 
-#: src/BeamForming.cpp:34
-#: src/DSArray.cpp:42
+#: src/BeamForming.cpp:34 src/DSArray.cpp:42
 msgid "Sound localization component using microphone array."
 msgstr "マイクロフォンアレイを用いた音源定位コンポーネント"
 
@@ -76,18 +63,13 @@ msgstr "ビームを固定角度に向けるか可変角度に向けるかの設
 msgid "Direction of the beam in constant mode [deg]."
 msgstr "固定角度モードにおけるビームを向ける角度の設定 [deg]"
 
-#: src/BeamForming.cpp:54
-#: src/CombFilter.cpp:48
-#: src/DSArray.cpp:54
-#: src/NoiseReduction.cpp:61
-#: src/SamplingRateConverter.cpp:48
+#: src/BeamForming.cpp:54 src/CombFilter.cpp:48 src/DSArray.cpp:54
+#: src/NoiseReduction.cpp:61 src/SamplingRateConverter.cpp:48
 #: src/WavRecord.cpp:50
 msgid "Sample rate of audio input."
 msgstr "入力音声データのサンプリング周波数設定"
 
-#: src/BeamForming.cpp:57
-#: src/DSArray.cpp:57
-#: src/WavRecord.cpp:53
+#: src/BeamForming.cpp:57 src/DSArray.cpp:57 src/WavRecord.cpp:53
 msgid "Number of audio input channels."
 msgstr "入力する音声データのチャンネル数設定"
 
@@ -95,20 +77,14 @@ msgstr "入力する音声データのチャンネル数設定"
 msgid "Angle data input."
 msgstr "角度データ入力"
 
-#: src/BeamForming.cpp:121
-#: src/ChannelSelector.cpp:126
-#: src/CombFilter.cpp:126
-#: src/DSArray.cpp:206
-#: src/EchoCanceler.cpp:115
-#: src/EchoSuppressor.cpp:119
-#: src/Mixer.cpp:144
-#: src/NoiseReduction.cpp:179
+#: src/BeamForming.cpp:121 src/ChannelSelector.cpp:126 src/CombFilter.cpp:126
+#: src/DSArray.cpp:206 src/EchoCanceler.cpp:115 src/EchoSuppressor.cpp:119
+#: src/Mixer.cpp:144 src/NoiseReduction.cpp:179
 #: src/SamplingRateConverter.cpp:129
 msgid "Audio data output."
 msgstr "音声データ出力"
 
-#: src/ChannelSelector.cpp:34
-#: src/CombFilter.cpp:34
+#: src/ChannelSelector.cpp:34 src/CombFilter.cpp:34
 msgid "Comb filter noise reduction component."
 msgstr "コムフィルタを用いたノイズ除去コンポーネント"
 
@@ -132,15 +108,11 @@ msgstr "加減算する度合い [1>=x>=-1]"
 msgid "Acoustic echo cancellation component using adaptive filter"
 msgstr "適応フィルタ使用した音響エコー除去コンポーネント"
 
-#: src/EchoCanceler.cpp:110
-#: src/EchoSuppressor.cpp:106
-#: src/Mixer.cpp:131
+#: src/EchoCanceler.cpp:110 src/EchoSuppressor.cpp:106 src/Mixer.cpp:131
 msgid "Audio data input (from mic)."
 msgstr "マイクからの音声データ入力"
 
-#: src/EchoCanceler.cpp:112
-#: src/EchoSuppressor.cpp:108
-#: src/Mixer.cpp:133
+#: src/EchoCanceler.cpp:112 src/EchoSuppressor.cpp:108 src/Mixer.cpp:133
 msgid "Referenct audio data input (from AudioOuput component)."
 msgstr "音声出力コンポーネントからの音声データ入力"
 
@@ -165,8 +137,12 @@ msgid "FFT/IFFT based noise reduction component."
 msgstr "FFT/IFFTを用いたノイズ除去コンポーネント"
 
 #: src/NoiseReduction.cpp:58
-msgid "Specify filtering method ['premp': Pre-emphasis mode, 'deemp': De-emphasis mode, 'bpf': Bandpass filter mode]."
-msgstr "フィルタモード選択 「premp」=プリエンファシスモード、「deemp」=ディエンファシスモード、「bpf」=バンドパスフィルタモード"
+msgid ""
+"Specify filtering method ['premp': Pre-emphasis mode, 'deemp': De-emphasis "
+"mode, 'bpf': Bandpass filter mode]."
+msgstr ""
+"フィルタモード選択 「premp」=プリエンファシスモード、「deemp」=ディエンファシ"
+"スモード、「bpf」=バンドパスフィルタモード"
 
 #: src/NoiseReduction.cpp:64
 msgid "Center frequency (effective in 'premp' and 'deemp' mode."
@@ -188,13 +164,11 @@ msgstr "強調倍率"
 msgid "Audio input component using portaudio"
 msgstr "PulseAudioライブラリを使用した音声入力コンポーネント"
 
-#: src/PortAudioInput.cpp:69
-#: src/PulseAudioInput.cpp:53
+#: src/PortAudioInput.cpp:69 src/PulseAudioInput.cpp:53
 msgid "Sample rate of audio capture."
 msgstr "録音する音声のサンプリング周波数設定"
 
-#: src/PortAudioInput.cpp:154
-#: src/PulseAudioInput.cpp:124
+#: src/PortAudioInput.cpp:154 src/PulseAudioInput.cpp:124
 #: src/SignalGeneration.cpp:96
 msgid "Audio data in packet."
 msgstr "パケット化した音声データ"
@@ -203,15 +177,12 @@ msgstr "パケット化した音声データ"
 msgid "Audio output component using portaudio"
 msgstr "PortAudioライブラリを使用した音声出力コンポーネント"
 
-#: src/PortAudioOutput.cpp:50
-#: src/PulseAudioOutput.cpp:50
+#: src/PortAudioOutput.cpp:50 src/PulseAudioOutput.cpp:50
 msgid "Sample byte of audio output."
 msgstr "出力する音声データのフォーマット設定"
 
-#: src/PortAudioOutput.cpp:56
-#: src/PulseAudioOutput.cpp:56
-#: src/SamplingRateConverter.cpp:51
-#: src/SignalGeneration.cpp:48
+#: src/PortAudioOutput.cpp:56 src/PulseAudioOutput.cpp:56
+#: src/SamplingRateConverter.cpp:51 src/SignalGeneration.cpp:48
 msgid "Sample rate of audio output."
 msgstr "出力する音声データのサンプリング周波数設定"
 
@@ -219,8 +190,7 @@ msgstr "出力する音声データのサンプリング周波数設定"
 msgid "Buffer length of audio output."
 msgstr "出力する音声データ長"
 
-#: src/PortAudioOutput.cpp:144
-#: src/PulseAudioOutput.cpp:138
+#: src/PortAudioOutput.cpp:144 src/PulseAudioOutput.cpp:138
 msgid "Actual audio data output."
 msgstr "音声データ出力"
 
@@ -274,6 +244,6 @@ msgstr "録音したデータを保存するファイル名"
 
 #~ msgid "Gain of the adaptive filter"
 #~ msgstr "適応フィルタ倍率"
+
 #~ msgid "Current parameter of adaptive filter."
 #~ msgstr "適応フィルタの設定値"
-
