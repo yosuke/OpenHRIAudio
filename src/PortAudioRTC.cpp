@@ -20,7 +20,7 @@
 #undef VERSION
 #endif
 #ifdef HAVE_CONFIG_H
-#include "../config.h"
+#include "config.h"
 #else
 #define VERSION "1.00"
 #endif
@@ -37,7 +37,7 @@ extern const char** portaudiooutput_spec;
 
 extern "C"
 {
-  void PortAudioRTCInit(RTC::Manager* manager)
+  DLL_EXPORT void PortAudioRTCInit(RTC::Manager* manager)
   {
     int i, j;
     PaError m_err;

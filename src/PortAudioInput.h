@@ -45,7 +45,7 @@
 #include "DescriptablePort.h"
 
 #ifdef HAVE_CONFIG_H
-#include "../config.h"
+#include "config.h"
 #else
 #define VERSION "1.00"
 #endif

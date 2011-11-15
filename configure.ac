@@ -74,9 +74,15 @@ if test "x$enable_installer" = "xyes" ; then
 	fi
 fi
 
+# some options for speexdsp
+FFT_PKGCONFIG=smallft
+AC_DEFINE([FLOATING_POINT], [], [Compile as floating-point])
+AC_DEFINE([USE_SMALLFT], [], [Use FFT from OggVorbis])
+AC_SUBST(FFT_PKGCONFIG)
+
 #PKG_CHECK_MODULES([OPENRTM], [OpenRTM-aist >= 1.0])
 
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADER([src/config.h])
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile

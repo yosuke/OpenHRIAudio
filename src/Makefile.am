@@ -1,12 +1,14 @@
 bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord
 lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la
 
-LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) $(GTKMM_LIBS) -lm @LTLIBINTL@
-AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) $(GTKMM_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\"
+LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) -lm @LTLIBINTL@
+AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\"
 
-include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h windowing.h
+include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h windowing.h arch.h os_support.h fftwrap.h smallft.h
 
 openhriaudiomanager_SOURCES = OpenHRIAudioManager.cpp
+openhriaudiomanager_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
+openhriaudiomanager_LDADD = $(GTKMM_LIBS)
 
 libportaudiortc_la_SOURCES = PortAudioInput.cpp PortAudioOutput.cpp PortAudioRTC.cpp
 
@@ -32,8 +34,7 @@ libechosuppressor_la_SOURCES = EchoSuppressor.cpp
 echosuppressor_SOURCES = EchoSuppressorComp.cpp
 echosuppressor_LDADD = libechosuppressor.la
 
-libnoisereduction_la_SOURCES = NoiseReduction.cpp windowing.cpp
-libnoisereduction_la_LIBADD = /usr/lib/libspeexdsp.a
+libnoisereduction_la_SOURCES = NoiseReduction.cpp windowing.cpp fftwrap.c smallft.c
 noisereduction_SOURCES = NoiseReductionComp.cpp
 noisereduction_LDADD = libnoisereduction.la
 
@@ -53,8 +54,7 @@ libmixer_la_SOURCES = Mixer.cpp
 mixer_SOURCES = MixerComp.cpp
 mixer_LDADD = libmixer.la
 
-libdsarray_la_SOURCES = DSArray.cpp windowing.cpp
-libdsarray_la_LIBADD = /usr/lib/libspeexdsp.a
+libdsarray_la_SOURCES = DSArray.cpp windowing.cpp fftwrap.c smallft.c
 dsarray_SOURCES = DSArrayComp.cpp
 dsarray_LDADD = libdsarray.la
 
@@ -62,8 +62,7 @@ libchannelselector_la_SOURCES = ChannelSelector.cpp
 channelselector_SOURCES = ChannelSelectorComp.cpp
 channelselector_LDADD = libchannelselector.la
 
-libbeamforming_la_SOURCES = BeamForming.cpp windowing.cpp 
-libbeamforming_la_LIBADD = /usr/lib/libspeexdsp.a
+libbeamforming_la_SOURCES = BeamForming.cpp windowing.cpp fftwrap.c smallft.c
 beamforming_SOURCES = BeamFormingComp.cpp
 beamforming_LDADD = libbeamforming.la
 
