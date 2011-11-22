@@ -106,7 +106,9 @@ Section $(TEXT_SecBase) SecBase
   File "/oname=beamforming.exe" "${TOP_BUILDDIR}\win\components\BeamForming.exe"
   File "/oname=channelselector.exe" "${TOP_BUILDDIR}\win\components\ChannelSelector.exe"
   File "/oname=OpenHRIAudioManager.exe" "${TOP_BUILDDIR}\win\components\OpenHRIAudioManager.exe"
-  File "${TOP_BUILDDIR}\win\components\PortAudioRTC.dll"
+  ;;File "${TOP_BUILDDIR}\win\components\PortAudioRTC.dll" ;;by Irie Seisho
+  File "${TOP_BUILDDIR}\win\components\PortAudioInput.dll";;by Irie Seisho
+  File "${TOP_BUILDDIR}\win\components\PortAudioOutput.dll";;by Irie Seisho
   File "${TOP_BUILDDIR}\win\components\EchoCanceler.dll"
   File "${TOP_BUILDDIR}\win\components\EchoSuppressor.dll"
   File "${TOP_BUILDDIR}\win\components\NoiseReduction.dll"

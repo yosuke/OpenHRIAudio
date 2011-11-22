@@ -159,7 +159,9 @@ int main (int argc, char** argv)
   components.push_back("PulseAudioOutput");
   components.push_back("PulseAudioInput");
 #elif defined(_WIN32)
-  components.push_back("PortAudioRTC");
+  //components.push_back("PortAudioRTC"); //by Irie Seisho
+  components.push_back("PortAudioInput");   //by Irie Seisho
+  components.push_back("PortAudioOutput");   //by Irie Seisho
 #endif
   components.push_back("EchoCanceler");
   components.push_back("EchoSuppressor");

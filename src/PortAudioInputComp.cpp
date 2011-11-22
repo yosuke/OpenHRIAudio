@@ -22,7 +22,7 @@
 #endif
 #include "intl.h"
 
-coil::Mutex m_pa_mutex;
+//coil::Mutex m_pa_mutex; //by Irie Seisho
 
 void MyModuleInit(RTC::Manager* manager)
 {

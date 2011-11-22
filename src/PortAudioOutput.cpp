@@ -25,7 +25,7 @@
 #endif
 #include "intl.h"
 
-extern coil::Mutex m_pa_mutex;
+//extern coil::Mutex m_pa_mutex; //by Irie Seisho
 
 // Module specification
 // <rtc-template block="module_spec">
@@ -180,7 +180,7 @@ RTC::ReturnCode_t PortAudioOutput::onActivated(RTC::UniqueId ec_id)
   PaStreamParameters outputParameters;
 
   try {
-    m_pa_mutex.lock();
+    //m_pa_mutex.lock(); //by Irie Seisho
 
     m_format = getFormat(m_formatstr);
     m_totalframes = FRAMES_PER_BUFFER * m_channels;
@@ -220,7 +220,7 @@ RTC::ReturnCode_t PortAudioOutput::onActivated(RTC::UniqueId ec_id)
       throw m_err;
     }
 
-    m_pa_mutex.unlock();
+    //m_pa_mutex.unlock(); //by Irie Seisho
   } catch (...) {
     std::string error_str = Pa_GetErrorText(m_err);
     RTC_WARN(("PortAudio failed onActivated:%s", error_str.c_str()));
@@ -300,7 +300,7 @@ void PortAudioOutput::WriteBufferCB(void *data, unsigned long fream_len)
 int PortAudioOutput::WriteBuffer(void)
 {
   //! Input data(queue buffer) is output to the device
-  m_pa_mutex.lock();
+  //m_pa_mutex.lock(); //by Irie Seisho
   m_mutex.lock();
   RTC_DEBUG(("WriteBuffer:mutex lock"));
   if (Pa_IsStreamActive(m_stream)) {
@@ -342,7 +342,7 @@ int PortAudioOutput::WriteBuffer(void)
     }
   }
   m_mutex.unlock();
-  m_pa_mutex.unlock();
+  //m_pa_mutex.unlock(); //by Irie Seisho
   RTC_DEBUG(("WriteBuffer:mutex unlock"));
   return 0;
 }
