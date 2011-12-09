@@ -176,6 +176,16 @@ int main (int argc, char** argv)
   components.push_back("AutoGainControl");
   components.push_back("WavRecord");
 
+  if(argc != 2) {
+    argc = 2;
+    char argv1[] = "-d";
+    argv[1] = argv1;
+  }
+  else { // argc == 2
+    if(strcmp(argv[1], "-d") != 0) {
+      strcpy(argv[1],"-d");
+    }
+  }
   manager = RTC::Manager::init(argc, argv);
   manager->activateManager();
 
