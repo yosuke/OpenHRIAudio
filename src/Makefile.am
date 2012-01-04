@@ -1,10 +1,10 @@
-bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord
-lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la
+bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord wavplayer
+lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la libwavplayer.la
 
 LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) -lm @LTLIBINTL@
 AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\"
 
-include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h windowing.h arch.h os_support.h fftwrap.h smallft.h
+include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h WavPlayer.h windowing.h arch.h os_support.h fftwrap.h smallft.h
 
 openhriaudiomanager_SOURCES = OpenHRIAudioManager.cpp
 openhriaudiomanager_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
@@ -74,4 +74,7 @@ libwavrecord_la_SOURCES = WavRecord.cpp
 wavrecord_SOURCES = WavRecordComp.cpp
 wavrecord_LDADD = libwavrecord.la
 
+libwavplayer_la_SOURCES = WavPlayer.cpp
+wavplayer_SOURCES = WavPlayerComp.cpp
+wavplayer_LDADD = libwavplayer.la
 

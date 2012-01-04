@@ -92,9 +92,6 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
   registerOutPort("AudioDataOut", m_out_dataOut);
   m_out_dataOut.setDescription(_("Audio data out packet."));
 
-  // bindParameter("Frequency", m_freq, "100");
-  // bindParameter("Gain", m_gain, "1000");
-  // bindParameter("Mode", m_mode, "Square");
   bindParameter("OutputSampleRate", m_samplerate, "16000");
   bindParameter("FileName", m_filename, "");
   bindParameter("ChannelNumbers", m_channels, "1");
@@ -115,9 +112,6 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
       RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
       return RTC::RTC_ERROR;
     }
-    // m_pbuff = 0;
-    // m_flg = true;
-    // m_cnt = 0;
     m_timer = coil::gettimeofday() - 1.0;
   } catch (...) {
     RTC_WARN(("%s", "error onActivated."));
@@ -137,46 +131,6 @@ RTC::ReturnCode_t WavPlayer::onExecute(RTC::UniqueId ec_id)
   m_timer = now;
   short *buffer = new short[bufferlen];
   sf_readf_short(sfr, buffer, bufferlen) ;
-  //int len = (int)( m_samplerate / m_freq );
-  //double d = 0;
-  //if ( m_mode == "Triangle" ) {
-  //  d = m_gain / (len / 4);
-  //} else if ( m_mode == "Sin" ) {
-  //  d = M_PI * 2 / len;
-  //}
-  //for ( int i = 0; i < bufferlen; i++) {
-  //  if ( m_mode == "Square" ) {
-  //    if ( m_cnt < len / 2 ) {
-  //      m_pbuff = m_gain;
-  //    } else {
-  //      m_pbuff = ~m_gain;
-  //    }
-  //  } else if ( m_mode == "Triangle" ) {
-  //    if ( m_flg == true ) {
-  //      m_pbuff += d;
-  //      if (m_pbuff > m_gain) {
-  //        m_flg = false;
-  //        m_pbuff = m_pbuff - (d * 2);
-  //      }
-  //    } else {
-  //      m_pbuff -= d;
-  //      if (m_pbuff < ~m_gain) {
-  //        m_flg = true;
-  //        m_pbuff = m_pbuff + (d * 2);
-  //      }
-  //    }
-  //  } else if ( m_mode == "Sin" ) {
-  //    m_pbuff = m_gain * sin( d * m_cnt );
-  //  } else {
-  //    m_pbuff = 0;
-  //  }
-  //  m_cnt++;
-  //  if ( m_cnt >= len ) {
-  //    m_cnt = 0;
-  //    if ( m_mode != "Square" ) m_pbuff = 0;
-  //  }
-  //  buffer[i] = (short)m_pbuff;
-  //}
   m_out_data.data.length(bufferlen * 2);  //!< set outport data length
   memcpy((void *)&(m_out_data.data[0]), (void *)&(buffer[0]), bufferlen * 2);
   setTimestamp(m_out_data);

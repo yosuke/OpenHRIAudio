@@ -31,4 +31,6 @@
 ./src/SignalGenerationComp.cpp
 ./src/WavRecord.cpp
 ./src/WavRecordComp.cpp
+./src/WavPlayer.cpp
+./src/WavPlayerComp.cpp
 ./src/windowing.cpp
