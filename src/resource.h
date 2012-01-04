@@ -14,4 +14,5 @@
 #define ID_BEAMFORMING      1011
 #define ID_AUTOGAINCONTROL  1012
 #define ID_WAVEREC          1013
+#define ID_WAVEPLA          1014
 

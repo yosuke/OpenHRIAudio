@@ -121,6 +121,7 @@ Section $(TEXT_SecBase) SecBase
   File "${TOP_BUILDDIR}\win\components\ChannelSelector.dll"
   File "${TOP_BUILDDIR}\win\components\AutoGainControl.dll"
   File "${TOP_BUILDDIR}\win\components\WavRecord.dll"
+  File "${TOP_BUILDDIR}\win\components\WavPlayer.dll"
   File "${TOP_BUILDDIR}\win\components\micset.csv"
   File "${TOP_BUILDDIR}\win\libportaudio.dll"
   File "${TOP_BUILDDIR}\win\libspeex.dll"

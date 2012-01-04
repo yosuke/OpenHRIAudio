@@ -44,7 +44,11 @@ static const char* wavrecord_spec[] =
     "lang_type",         "script",
     "conf.default.SampleRate", "16000",
     "conf.default.ChannelNumbers", "1",
-    "conf.default.FileName", "wavrecord-default.wav",
+#if defined(__linux)
+	"conf.default.FileName", "wavrecord-default.wav",
+#elif defined(_WIN32)
+	"conf.default.FileName", "c:\\work\\wavrecord-default.wav",
+#endif
     "conf.__widget__.SampleRate", "spin",
     "conf.__constraints__.SampleRate", "x >= 1",
     "conf.__description__.SampleRate", N_("Sample rate of audio input."),
@@ -129,6 +133,7 @@ RTC::ReturnCode_t WavRecord::onInitialize()
 RTC::ReturnCode_t WavRecord::onActivated(RTC::UniqueId ec_id)
 {
   RTC_DEBUG(("onActivated start"));
+  printf("Wave Record file: %s", m_filename.c_str());//TEST
   sfinfo.samplerate = m_rate;
   sfinfo.channels = m_channels;
   sfinfo.format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;

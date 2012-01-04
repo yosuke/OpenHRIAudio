@@ -80,7 +80,7 @@ protected:
 #endif
 
 #if defined(_WIN32)
-#define COMPNUM 14
+#define COMPNUM 15
 RTC::Manager* g_manager;
 bool loadlist[COMPNUM];
 
@@ -88,11 +88,13 @@ BOOL CALLBACK DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
   switch( msg ){
   case WM_INITDIALOG:
-    for (int i = 0; i < COMPNUM; i++) {
+    int i;
+    for (i = 0; i < COMPNUM; i++) {
       if ( loadlist[i] == false ) {
-	EnableWindow( GetDlgItem( hWnd, (1000 + i) ), false);
+		EnableWindow( GetDlgItem( hWnd, (1000 + i) ), false);
       }
     }
+	printf("Enable Window Cnt = %d\n", i);
     //g_manager->createComponent("PortAudioInput");
     //g_manager->createComponent("PortAudioOutput");
     break;
@@ -143,9 +145,11 @@ BOOL CALLBACK DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     case ID_WAVEREC:
       g_manager->createComponent("WavRecord");
       break;
-    }
+    case ID_WAVEPLA:
+      g_manager->createComponent("WavPlayer");
+      break;
+	}
   }
-  
   return FALSE;
 }
 #endif
@@ -175,6 +179,7 @@ int main (int argc, char** argv)
   components.push_back("BeamForming");
   components.push_back("AutoGainControl");
   components.push_back("WavRecord");
+  components.push_back("WavPlayer");
 
   if(argc != 2) {
     argc = 2;
