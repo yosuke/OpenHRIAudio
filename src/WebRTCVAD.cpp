@@ -135,13 +135,10 @@ RTC::ReturnCode_t WebRTCVAD::onActivated(RTC::UniqueId ec_id)
   if (!m_inbuffer.empty()) {
     m_inbuffer.clear();
   }
-  if (!m_outbuffer.empty()) {
-    m_outbuffer.clear();
-  }
+
   m_mutex.unlock();
 
   is_active = true;
-  is_voice = false;
 
   RTC_DEBUG(("onActivated finish"));
   return RTC::RTC_OK;
@@ -195,29 +192,21 @@ RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
     WebRtc_Word16 vad = WebRtcVad_Process(handle, 16000, data, WINLEN);
     RTC_INFO(("vad: %i", vad));
     
-#if 0
     // output the resulting signal
     m_fout.data.length(WINLEN);
     if (vad > 0) {
-      short val;
       for (i = 0; i < WINLEN/2; i++) {
-        val = m_outbuffer.front();
-        m_fout.data[i*2] = (unsigned char)(val & 0x00ff);
-        m_fout.data[i*2+1] = (unsigned char)((val & 0xff00) >> 8);
-        m_outbuffer.pop_front();
+        m_fout.data[i*2] = (unsigned char)(data[i] & 0x00ff);
+        m_fout.data[i*2+1] = (unsigned char)((data[i] & 0xff00) >> 8);
       }
     } else {
-      short val;
       for (i = 0; i < WINLEN/2; i++) {
-        val = m_outbuffer.front();
         m_fout.data[i*2] = 0;
         m_fout.data[i*2+1] = 0;
-        m_outbuffer.pop_front();
       }
     }
     setTimestamp(m_fout);
     m_foutOut.write();
-#endif
   }
   m_mutex.unlock();
   RTC_DEBUG(("onExecute:mutex unlock"));
@@ -234,9 +223,6 @@ RTC::ReturnCode_t WebRTCVAD::onDeactivated(RTC::UniqueId ec_id)
   if (!m_inbuffer.empty()) {
     m_inbuffer.clear();
   }
-  if (!m_outbuffer.empty()) {
-    m_outbuffer.clear();
-  }
   m_mutex.unlock();
   RTC_DEBUG(("onDeactivated:mutex unlock"));
   RTC_DEBUG(("onDeactivated finish"));
@@ -251,9 +237,6 @@ RTC::ReturnCode_t WebRTCVAD::onFinalize()
   RTC_DEBUG(("onFinalize:mutex lock"));
   if (!m_inbuffer.empty()) {
     m_inbuffer.clear();
-  }
-  if (!m_outbuffer.empty()) {
-    m_outbuffer.clear();
   }
   m_mutex.unlock();
   RTC_DEBUG(("onFinalize:mutex unlock"));

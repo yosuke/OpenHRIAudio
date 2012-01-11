@@ -1,4 +1,4 @@
-bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord gatertc
+bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord webrtcvad gatertc
 lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la libgatertc.la
 
 LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) -lm @LTLIBINTL@
@@ -74,8 +74,11 @@ libwavrecord_la_SOURCES = WavRecord.cpp
 wavrecord_SOURCES = WavRecordComp.cpp
 wavrecord_LDADD = libwavrecord.la
 
+#libwebrtcvad_la_SOURCES = WebRTCVAD.cpp
+webrtcvad_SOURCES = WebRTCVADComp.cpp WebRTCVAD.cpp
+#webrtcvad_LDADD = libwebrtcvad.la -L. -lwebrtc
+webrtcvad_LDADD = -L. -lwebrtc
+
 libgatertc_la_SOURCES = Gate.cpp
 gatertc_SOURCES = GateComp.cpp
 gatertc_LDADD = libgatertc.la
-
-

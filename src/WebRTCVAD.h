@@ -307,13 +307,9 @@ class WebRTCVAD
  private:
   // <rtc-template block="private_attribute">
   bool is_active;
-  bool is_voice;
   coil::Mutex m_mutex;
   std::list<short> m_inbuffer; //!< receive buffer queue
-  std::list<short> m_outbuffer;
   VadInst* handle;
-  int handle_size_bytes;
-  void* tmp_handle;
   // </rtc-template>
 
   // <rtc-template block="private_operation">
