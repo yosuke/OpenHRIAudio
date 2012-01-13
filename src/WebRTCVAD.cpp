@@ -167,7 +167,6 @@ void WebRTCVAD::RcvInBuffer(TimedOctetSeq data)
   return;
 }
 
-//! order : dft->pre-emphasis->idft->repetition addition
 RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
 {
   RTC_DEBUG(("onExecute start"));
@@ -201,7 +200,7 @@ RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
       }
     } else {
       for (i = 0; i < WINLEN/2; i++) {
-        m_fout.data[i*2] = 0;
+        m_fout.data[i*2] = i % 2; // avoid julius zero stripping problem
         m_fout.data[i*2+1] = 0;
       }
     }

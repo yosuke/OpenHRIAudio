@@ -118,8 +118,9 @@ RTC::ReturnCode_t Gate::onExecute(RTC::UniqueId ec_id)
         m_out.data[i] = m_in.data[i];
       }
     } else {
-      for (i = 0; i < m_in.data.length(); i++) {
-        m_out.data[i] = 0;
+      for (i = 0; i < m_in.data.length() / 2; i++) {
+        m_out.data[2*i] = i % 2; // avoid julius zero stripping problem
+        m_out.data[2*i+1] = 0;
       }
     }
     setTimestamp(m_out);
