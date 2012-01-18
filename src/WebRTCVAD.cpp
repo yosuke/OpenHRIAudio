@@ -31,7 +31,7 @@ static const char* webrtcvad_spec[] =
   {
     "implementation_id", "WebRTCVAD",
     "type_name",         "WebRTCVAD",
-    "description",       N_("WebRTC based noise reduction component."),
+    "description",       N_("WebRTC based voice activity detection (and filtering) component."),
     "version",           VERSION,
     "vendor",            "AIST",
     "category",          "communication",
@@ -39,7 +39,10 @@ static const char* webrtcvad_spec[] =
     "max_instance",      "10",
     "language",          "C++",
     "lang_type",         "script",
-    "conf.__doc__.usage", "\n  ::\n\n  $ noisereduction\n",
+    "conf.default.FilterLength", "5",
+    "conf.__constraints__.FilterLength", "x >= 1",
+    "conf.__description__.FilterLength", N_("Filter length to smooth voice detection result."),
+    "conf.__doc__.usage", "\n  ::\n\n  $ webrtcvad\n",
     ""
   };
 // </rtc-template>
@@ -117,6 +120,7 @@ RTC::ReturnCode_t WebRTCVAD::onInitialize()
   // Set CORBA Service Ports
 
   // </rtc-template>
+  bindParameter("FilterLength", m_bufferlen, "5");
 
   WebRtcVad_Create(&handle);
   WebRtcVad_Init(handle);
@@ -134,6 +138,16 @@ RTC::ReturnCode_t WebRTCVAD::onActivated(RTC::UniqueId ec_id)
 
   if (!m_inbuffer.empty()) {
     m_inbuffer.clear();
+  }
+  if (!m_filterflagbuffer.empty()) {
+    m_filterflagbuffer.clear();
+  }
+  if (!m_filterdatabuffer.empty()) {
+    std::list<WebRtc_Word16*>::iterator it = m_filterdatabuffer.begin();
+    while (it != m_filterdatabuffer.end()) {
+      delete *it;
+    }
+    m_filterdatabuffer.clear();
   }
 
   m_mutex.unlock();
@@ -174,7 +188,8 @@ RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
   RTC_DEBUG(("onExecute:mutex lock"));
   if (m_inbuffer.size() >= WINLEN) {
     int i;
-    WebRtc_Word16 data[WINLEN];
+    WebRtc_Word16 *data;
+    data = new WebRtc_Word16[WINLEN];
     std::list<short>::iterator pbuffer;
 
     // sliding window with half overlap
@@ -189,23 +204,42 @@ RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
     }
 
     WebRtc_Word16 vad = WebRtcVad_Process(handle, 16000, data, WINLEN);
-    RTC_INFO(("vad: %i", vad));
+    m_filterdatabuffer.push_back(data);
+    m_filterflagbuffer.push_back(vad);
     
-    // output the resulting signal
-    m_fout.data.length(WINLEN);
-    if (vad > 0) {
-      for (i = 0; i < WINLEN/2; i++) {
-        m_fout.data[i*2] = (unsigned char)(data[i] & 0x00ff);
-        m_fout.data[i*2+1] = (unsigned char)((data[i] & 0xff00) >> 8);
+    while (m_filterdatabuffer.size() > m_bufferlen) {
+      WebRtc_Word16 vad1 = 0;
+      std::list<WebRtc_Word16>::iterator it = m_filterflagbuffer.begin();
+      for (i = 0; i < m_bufferlen; i++) {
+	WebRtc_Word16 vad2 = *it;
+	if (vad1 > 0) {
+	  vad1 = vad2;
+	}
+	it++;
       }
-    } else {
-      for (i = 0; i < WINLEN/2; i++) {
-        m_fout.data[i*2] = i % 2; // avoid julius zero stripping problem
-        m_fout.data[i*2+1] = 0;
+      RTC_INFO(("vad: %i, vad(filtered): %i", vad, vad1));
+
+      m_filterflagbuffer.pop_front();
+      data = m_filterdatabuffer.front();
+      m_filterdatabuffer.pop_front();
+
+      // output the resulting signal
+      m_fout.data.length(WINLEN);
+      if (vad1 > 0) {
+	for (i = 0; i < WINLEN/2; i++) {
+	  m_fout.data[i*2] = (unsigned char)(data[i] & 0x00ff);
+	  m_fout.data[i*2+1] = (unsigned char)((data[i] & 0xff00) >> 8);
+	}
+      } else {
+	for (i = 0; i < WINLEN/2; i++) {
+	  m_fout.data[i*2] = i % 2; // avoid julius zero stripping problem
+	  m_fout.data[i*2+1] = 0;
+	}
       }
+      delete data;
+      setTimestamp(m_fout);
+      m_foutOut.write();
     }
-    setTimestamp(m_fout);
-    m_foutOut.write();
   }
   m_mutex.unlock();
   RTC_DEBUG(("onExecute:mutex unlock"));

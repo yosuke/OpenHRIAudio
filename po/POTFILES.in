@@ -31,4 +31,6 @@
 ./src/SignalGenerationComp.cpp
 ./src/WavRecord.cpp
 ./src/WavRecordComp.cpp
+./src/WebRTCVAD.cpp
+./src/WebRTCVADComp.cpp
 ./src/windowing.cpp

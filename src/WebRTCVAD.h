@@ -310,6 +310,9 @@ class WebRTCVAD
   coil::Mutex m_mutex;
   std::list<short> m_inbuffer; //!< receive buffer queue
   VadInst* handle;
+  std::list<WebRtc_Word16> m_filterflagbuffer;
+  std::list<WebRtc_Word16*> m_filterdatabuffer;
+  int m_bufferlen;
   // </rtc-template>
 
   // <rtc-template block="private_operation">
