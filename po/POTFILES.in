@@ -33,4 +33,8 @@
 ./src/WavRecordComp.cpp
 ./src/WavPlayer.cpp
 ./src/WavPlayerComp.cpp
+./src/WebRTCVAD.cpp
+./src/WebRTCVADComp.cpp
+./src/Gate.cpp
+./src/GateComp.cpp
 ./src/windowing.cpp
