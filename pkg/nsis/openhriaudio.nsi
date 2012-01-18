@@ -106,6 +106,11 @@ Section $(TEXT_SecBase) SecBase
   File "/oname=beamforming.exe" "${TOP_BUILDDIR}\win\components\BeamForming.exe"
   File "/oname=channelselector.exe" "${TOP_BUILDDIR}\win\components\ChannelSelector.exe"
   File "/oname=OpenHRIAudioManager.exe" "${TOP_BUILDDIR}\win\components\OpenHRIAudioManager.exe"
+  File "/oname=gate.exe" "${TOP_BUILDDIR}\win\components\Gate.exe"
+  File "/oname=webrtcvad.exe" "${TOP_BUILDDIR}\win\components\WebRTCVAD.exe"
+  File "/oname=autogaincontrol.exe" "${TOP_BUILDDIR}\win\components\AutoGainControl.exe"
+  File "/oname=wavplayer.exe" "${TOP_BUILDDIR}\win\components\WavPlayer.exe"
+  File "/oname=wavrecord.exe" "${TOP_BUILDDIR}\win\components\WavRecord.exe"
   ;;File "${TOP_BUILDDIR}\win\components\PortAudioRTC.dll" ;;by Irie Seisho
   File "${TOP_BUILDDIR}\win\components\PortAudioInput.dll";;by Irie Seisho
   File "${TOP_BUILDDIR}\win\components\PortAudioOutput.dll";;by Irie Seisho
@@ -122,6 +127,8 @@ Section $(TEXT_SecBase) SecBase
   File "${TOP_BUILDDIR}\win\components\AutoGainControl.dll"
   File "${TOP_BUILDDIR}\win\components\WavRecord.dll"
   File "${TOP_BUILDDIR}\win\components\WavPlayer.dll"
+  File "${TOP_BUILDDIR}\win\components\Gate.dll"
+  File "${TOP_BUILDDIR}\win\components\WebRTCVAD.dll"
   File "${TOP_BUILDDIR}\win\components\micset.csv"
   File "${TOP_BUILDDIR}\win\libportaudio.dll"
   File "${TOP_BUILDDIR}\win\libspeex.dll"
@@ -175,6 +182,11 @@ Section $(TEXT_SecBase) SecBase
   CreateShortCut "${SCDIR}\beamforming.lnk" "$INSTDIR\beamforming.exe"
   CreateShortCut "${SCDIR}\channelselector.lnk" "$INSTDIR\channelselector.exe"
   CreateShortCut "${SCDIR}\OpenHRIAudioManager.lnk" "$INSTDIR\OpenHRIAudioManager.exe" -d
+  CreateShortCut "${SCDIR}\gate.lnk" "$INSTDIR\gate.exe"
+  CreateShortCut "${SCDIR}\webrtcvad.lnk" "$INSTDIR\webrtcvad.exe"
+  CreateShortCut "${SCDIR}\autogaincontrol.lnk" "$INSTDIR\autogaincontrol.exe"
+  CreateShortCut "${SCDIR}\wavplayer.lnk" "$INSTDIR\wavplayer.exe"
+  CreateShortCut "${SCDIR}\wavrecord.lnk" "$INSTDIR\wavrecord.exe"
 
 SectionEnd
 
@@ -234,6 +246,11 @@ Section "Uninstall"
   Delete "${SCDIR}\beamforming.lnk"
   Delete "${SCDIR}\channelselector.lnk"
   Delete "${SCDIR}\OpenHRIAudioManager.lnk"
+  Delete "${SCDIR}\gate.lnk"
+  Delete "${SCDIR}\webrtcvad.lnk"
+  Delete "${SCDIR}\autogaincontrol.lnk"
+  Delete "${SCDIR}\wavplayer.lnk"
+  Delete "${SCDIR}\wavrecord.lnk"
   RMDir "${SCDIR}"
 
   DeleteRegValue HKLM "Software\${PACKAGE_NAME}" "Start Menu Folder"

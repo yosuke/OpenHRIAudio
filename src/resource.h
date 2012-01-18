@@ -15,4 +15,6 @@
 #define ID_AUTOGAINCONTROL  1012
 #define ID_WAVEREC          1013
 #define ID_WAVEPLA          1014
+#define ID_WEBRTCVAD        1015
+#define ID_GATE             1016
 

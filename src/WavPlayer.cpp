@@ -61,6 +61,27 @@ static const char* waveplayer_spec[] =
     "conf.__doc__.usage", "\n  ::\n\n  $ waveplayer\n",
     ""
   };
+
+#if defined(__linux)
+
+#elif defined(_WIN32)
+int OpenDiaog(HWND hwnd,LPCSTR Filter,char *FileName,DWORD Flags)
+{
+   OPENFILENAME OFN; 
+
+   ZeroMemory(&OFN,sizeof(OPENFILENAME));
+   OFN.lStructSize = sizeof(OPENFILENAME); 
+   OFN.hwndOwner = hwnd;
+   OFN.lpstrFilter =Filter;
+   OFN.lpstrFile =FileName;  
+   OFN.nMaxFile = MAX_PATH*2;
+   OFN.Flags = Flags;    
+   OFN.lpstrTitle = "ファイルを開く";
+   return (GetOpenFileName(&OFN));
+}
+#endif
+
+
 // </rtc-template>
 
 /*!
@@ -93,8 +114,23 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
   m_out_dataOut.setDescription(_("Audio data out packet."));
 
   bindParameter("OutputSampleRate", m_samplerate, "16000");
-  bindParameter("FileName", m_filename, "");
   bindParameter("ChannelNumbers", m_channels, "1");
+#if defined(__linux)
+	bindParameter("FileName", m_filename, "wavrecord-default.wav");
+#elif defined(_WIN32)
+	bindParameter("FileName", m_filename, "c:\\work\\wavrecord-default.wav");
+	HWND hwnd = GetWindow( NULL, GW_OWNER );
+
+	ZeroMemory(WaveFileName,MAX_PATH*2);
+	strncpy(WaveFileName, m_filename.c_str(), m_filename.size());
+	//printf("m_filename.c_str: %s\n", m_filename.c_str());
+	//printf("m_filename.size: %d\n", m_filename.size());
+	//printf("Wave File Name: %s\n", WaveFileName);
+	if (OpenDiaog(hwnd,"Wave Files(*.wav)\0*.wav\0All Files(*.*)\0*.*\0\0",
+					WaveFileName,OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY))
+	            
+	//MessageBox(hwnd,strcat(WaveFileName,"\nを選択しました。"),"情報",MB_OK);
+#endif
 
   RTC_DEBUG(("onInitialize finish"));
   return RTC::RTC_OK;
@@ -106,10 +142,14 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
   sfinfo.samplerate = (int)m_samplerate;
   sfinfo.channels = m_channels;
   sfinfo.format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
+
   try {
-    sfr = sf_open(m_filename.c_str(), SFM_READ, &sfinfo);
-    if (sfr == NULL) {
-      RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
+    //sfr = sf_open(m_filename.c_str(), SFM_READ, &sfinfo);
+    sfr = sf_open(WaveFileName, SFM_READ, &sfinfo);
+ 	printf("Wave File Name: %s\n", WaveFileName);
+   if (sfr == NULL) {
+      //RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
+      RTC_DEBUG(("unable to open file: %s", WaveFileName));
       return RTC::RTC_ERROR;
     }
     m_timer = coil::gettimeofday() - 1.0;

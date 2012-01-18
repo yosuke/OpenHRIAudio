@@ -22,6 +22,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#if defined(__linux)
+
+#elif defined(_WIN32)
+#include <windows.h>
+#include <CommDlg.h>
+#endif
 #include <rtm/Manager.h>
 #include <rtm/DataFlowComponentBase.h>
 #include <rtm/CorbaPort.h>
@@ -229,6 +235,11 @@ class WavPlayer
   // coil::Mutex m_mutex;
   // std::list<unsigned char> m_data; //!< receive buffer queue
   std::string m_filename;
+#if defined(__linux)
+
+#elif defined(_WIN32)
+	char WaveFileName[MAX_PATH*2]; 
+#endif
   // std::string m_formatstr;
   // int m_rate;
   // int m_err;

@@ -80,7 +80,7 @@ protected:
 #endif
 
 #if defined(_WIN32)
-#define COMPNUM 15
+#define COMPNUM 17
 RTC::Manager* g_manager;
 bool loadlist[COMPNUM];
 
@@ -148,6 +148,12 @@ BOOL CALLBACK DlgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     case ID_WAVEPLA:
       g_manager->createComponent("WavPlayer");
       break;
+    case ID_WEBRTCVAD:
+      g_manager->createComponent("WebRTCVAD");
+      break;
+    case ID_GATE:
+      g_manager->createComponent("Gate");
+      break;
 	}
   }
   return FALSE;
@@ -180,6 +186,8 @@ int main (int argc, char** argv)
   components.push_back("AutoGainControl");
   components.push_back("WavRecord");
   components.push_back("WavPlayer");
+  components.push_back("WebRTCVAD");
+  components.push_back("Gate");
 
   if(argc != 2) {
     argc = 2;
