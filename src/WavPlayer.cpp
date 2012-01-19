@@ -146,7 +146,7 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
   try {
     //sfr = sf_open(m_filename.c_str(), SFM_READ, &sfinfo);
     sfr = sf_open(WaveFileName, SFM_READ, &sfinfo);
- 	printf("Wave File Name: %s\n", WaveFileName);
+ 	RTC_INFO(("Wave File Name: %s\n", WaveFileName));
    if (sfr == NULL) {
       //RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
       RTC_DEBUG(("unable to open file: %s", WaveFileName));
