@@ -152,7 +152,7 @@ RTC::ReturnCode_t WebRTCVAD::onActivated(RTC::UniqueId ec_id)
   if (!m_filterdatabuffer.empty()) {
     std::list<WebRtc_Word16*>::iterator it = m_filterdatabuffer.begin();
     while (it != m_filterdatabuffer.end()) {
-      delete *it;
+      delete [] *it;
 	  //RTC_INFO(("delete *it"));
 	  it++;
 	}
