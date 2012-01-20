@@ -123,8 +123,8 @@ RTC::ReturnCode_t WebRTCVAD::onInitialize()
   bindParameter("FilterLength", m_bufferlen, "5");//ADDED
 
   WebRtcVad_Create(&handle);
-  //WebRtcVad_Init(handle);
-  //WebRtcVad_set_mode(handle, 2); // agressive adaptation mode
+  WebRtcVad_Init(handle);
+  WebRtcVad_set_mode(handle, 2); // agressive adaptation mode
 
   RTC_DEBUG(("onInitialize finish"));
   return RTC::RTC_OK;
@@ -136,8 +136,8 @@ RTC::ReturnCode_t WebRTCVAD::onActivated(RTC::UniqueId ec_id)
   //RTC_INFO(("onActivated start0"));
 
   //WebRtcVad_Create(&handle);
-  WebRtcVad_Init(handle);
-  WebRtcVad_set_mode(handle, 2); // agressive adaptation mode
+  //WebRtcVad_Init(handle);
+  //WebRtcVad_set_mode(handle, 2); // agressive adaptation mode
 
   m_mutex.lock();
 
@@ -148,12 +148,12 @@ RTC::ReturnCode_t WebRTCVAD::onActivated(RTC::UniqueId ec_id)
   if (!m_filterflagbuffer.empty()) {//ADDED Begin
     m_filterflagbuffer.clear();
   }
-  RTC_INFO(("onActivated start2"));
+  //RTC_INFO(("onActivated start2"));
   if (!m_filterdatabuffer.empty()) {
     std::list<WebRtc_Word16*>::iterator it = m_filterdatabuffer.begin();
     while (it != m_filterdatabuffer.end()) {
       delete *it;
-	  RTC_INFO(("delete *it"));
+	  //RTC_INFO(("delete *it"));
 	  it++;
 	}
     m_filterdatabuffer.clear();
@@ -164,7 +164,7 @@ RTC::ReturnCode_t WebRTCVAD::onActivated(RTC::UniqueId ec_id)
   is_active = true;
 
   RTC_DEBUG(("onActivated finish"));
-  RTC_INFO(("onActivated finish"));
+  //RTC_INFO(("onActivated finish"));
 
   return RTC::RTC_OK;
 }
@@ -247,7 +247,7 @@ RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
 			m_fout.data[i*2+1] = 0;
 		}
       }
-      delete data;
+      delete [] data;
       setTimestamp(m_fout);
       m_foutOut.write();
     }//CHANGED End
@@ -261,7 +261,7 @@ RTC::ReturnCode_t WebRTCVAD::onExecute(RTC::UniqueId ec_id)
 RTC::ReturnCode_t WebRTCVAD::onDeactivated(RTC::UniqueId ec_id)
 {
   RTC_DEBUG(("onDeactivated start"));
-  WebRtcVad_Free(handle);
+  //WebRtcVad_Free(handle);
   is_active = false;
   m_mutex.lock();
   RTC_DEBUG(("onDeactivated:mutex lock"));
