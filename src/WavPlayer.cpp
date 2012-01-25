@@ -139,6 +139,9 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
 RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
 {
   RTC_DEBUG(("onActivated start"));
+#if defined(__linux)
+  RTC_INFO(("Linux platform is not supported yet."));
+#elif defined(_WIN32)
   sfinfo.samplerate = (int)m_samplerate;
   sfinfo.channels = m_channels;
   sfinfo.format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
@@ -157,6 +160,7 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
     RTC_WARN(("%s", "error onActivated."));
     return RTC::RTC_ERROR;
   }
+#endif
 
   RTC_DEBUG(("onActivated finish"));
   return RTC::RTC_OK;
