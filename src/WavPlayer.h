@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <math.h>
 #if defined(__linux)
-#include "/usr/include/gtkmm-2.4/gtkmm.h"
+#include <gtkmm.h>
 #elif defined(_WIN32)
 #include <windows.h>
 #include <CommDlg.h>
