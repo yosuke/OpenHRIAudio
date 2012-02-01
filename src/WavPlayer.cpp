@@ -26,8 +26,9 @@
 #include "intl.h"
 
 #if defined(__linux)
-	char WaveFileName[512*2]; 
+static char WaveFileName[512*2]; 
 #elif defined(_WIN32)
+static char WaveFileName[MAX_PATH*2]; 
 #endif
 
 // Module specification
@@ -122,7 +123,7 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
   bindParameter("ChannelNumbers", m_channels, "1");
 #if defined(__linux)
 	bindParameter("FileName", m_filename, "wavrecord-default.wav");
-
+#ifdef SHARED_LIB
 	Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_OPEN );
 	// 開く、キャンセルボタン
 	diag.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
@@ -136,6 +137,7 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
 	  break;
 	}
 	Gtk::MessageDialog( WaveFileName ).run();
+#endif //SHARED_LIB
 #elif defined(_WIN32)
 	bindParameter("FileName", m_filename, "c:\\work\\wavrecord-default.wav");
 	HWND hwnd = GetWindow( NULL, GW_OWNER );
@@ -152,6 +154,7 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
 #endif
 
   RTC_DEBUG(("onInitialize finish"));
+  RTC_INFO(("onInitialize finish"));
   return RTC::RTC_OK;
 }
 
@@ -217,9 +220,14 @@ RTC::ReturnCode_t WavPlayer::onFinalize()
 
 extern "C"
 {
-  void WavPlayerInit(RTC::Manager* manager)
+  void WavPlayerInit(RTC::Manager* manager, char * wave_file_name)
   {
     int i;
+#ifdef SHARED_LIB
+    //nothing
+#else
+    strcpy(WaveFileName, wave_file_name);
+#endif
     for (i = 0; strlen(waveplayer_spec[i]) != 0; i++);
     char** spec_intl = new char*[i + 1];
     for (int j = 0; j < i; j++) {
