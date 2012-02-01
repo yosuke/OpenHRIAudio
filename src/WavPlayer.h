@@ -235,11 +235,6 @@ class WavPlayer
   // coil::Mutex m_mutex;
   // std::list<unsigned char> m_data; //!< receive buffer queue
   std::string m_filename;
-#if defined(__linux)
-  //	char WaveFileName[512*2]; 
-#elif defined(_WIN32)
-	char WaveFileName[MAX_PATH*2]; 
-#endif
   // std::string m_formatstr;
   // int m_rate;
   // int m_err;
@@ -254,7 +249,7 @@ extern "C"
    *
    * @param manager Maneger Object
    */
-  DLL_EXPORT void WavPlayerInit(RTC::Manager* manager);
+  DLL_EXPORT void WavPlayerInit(RTC::Manager* manager, char * wave_file_name);
 };
 
 

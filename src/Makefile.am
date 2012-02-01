@@ -74,12 +74,17 @@ libwavrecord_la_SOURCES = WavRecord.cpp
 wavrecord_SOURCES = WavRecordComp.cpp
 wavrecord_LDADD = libwavrecord.la
 
+AM_D_SHARED_LIB = -DSHARED_LIB
+
 libwavplayer_la_SOURCES = WavPlayer.cpp
-libwavplayer_la_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
+#libwavplayer_la_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
+libwavplayer_la_CPPFLAGS = $(AM_D_SHARED_LIB) $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
 libwavplayer_la_LIBADD = $(GTKMM_LIBS)
-wavplayer_SOURCES = WavPlayerComp.cpp
+#wavplayer_SOURCES = WavPlayerComp.cpp
+wavplayer_SOURCES = WavPlayerComp.cpp WavPlayer.cpp
 wavplayer_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
-wavplayer_LDADD = libwavplayer.la $(GTKMM_LIBS)
+#wavplayer_LDADD = libwavplayer.la $(GTKMM_LIBS)
+wavplayer_LDADD = $(GTKMM_LIBS)
 
 libwebrtcvad_la_SOURCES = WebRTCVAD.cpp
 libwebrtcvad_la_LDFLAGS =  -L. -lwebrtc
