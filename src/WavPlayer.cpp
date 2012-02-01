@@ -25,6 +25,11 @@
 #endif
 #include "intl.h"
 
+#if defined(__linux)
+	char WaveFileName[512*2]; 
+#elif defined(_WIN32)
+#endif
+
 // Module specification
 // <rtc-template block="module_spec">
 static const char* waveplayer_spec[] =
@@ -63,7 +68,7 @@ static const char* waveplayer_spec[] =
   };
 
 #if defined(__linux)
-
+//nothing
 #elif defined(_WIN32)
 int OpenDiaog(HWND hwnd,LPCSTR Filter,char *FileName,DWORD Flags)
 {
@@ -117,6 +122,20 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
   bindParameter("ChannelNumbers", m_channels, "1");
 #if defined(__linux)
 	bindParameter("FileName", m_filename, "wavrecord-default.wav");
+
+	Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_OPEN );
+	// 開く、キャンセルボタン
+	diag.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
+	diag.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+	switch( diag.run() ){
+	case Gtk::RESPONSE_OK:
+	  strncpy(WaveFileName, (diag.get_filename()).c_str(), (diag.get_filename()).size());
+	  break;
+        case Gtk::RESPONSE_CANCEL:
+	  strncpy(WaveFileName, m_filename.c_str(), m_filename.size());
+	  break;
+	}
+	Gtk::MessageDialog( WaveFileName ).run();
 #elif defined(_WIN32)
 	bindParameter("FileName", m_filename, "c:\\work\\wavrecord-default.wav");
 	HWND hwnd = GetWindow( NULL, GW_OWNER );
@@ -149,8 +168,8 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
   try {
     //sfr = sf_open(m_filename.c_str(), SFM_READ, &sfinfo);
     sfr = sf_open(WaveFileName, SFM_READ, &sfinfo);
- 	RTC_INFO(("Wave File Name: %s\n", WaveFileName));
-   if (sfr == NULL) {
+    RTC_INFO(("Wave File Name: %s\n", WaveFileName));
+    if (sfr == NULL) {
       //RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
       RTC_DEBUG(("unable to open file: %s", WaveFileName));
       return RTC::RTC_ERROR;

@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <math.h>
 #if defined(__linux)
-
+#include <gtkmm.h>
 #elif defined(_WIN32)
 #include <windows.h>
 #include <CommDlg.h>
@@ -236,7 +236,7 @@ class WavPlayer
   // std::list<unsigned char> m_data; //!< receive buffer queue
   std::string m_filename;
 #if defined(__linux)
-
+  //	char WaveFileName[512*2]; 
 #elif defined(_WIN32)
 	char WaveFileName[MAX_PATH*2]; 
 #endif

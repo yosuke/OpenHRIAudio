@@ -207,6 +207,7 @@ int main (int argc, char** argv)
     std::string lower = components[i];
     std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);   
     std::string soname = "lib" + lower + ".so";
+    //printf("soname: %s\n", soname.c_str());
     if ((path = getsopath(soname)) != NULL) {
       printf("loading %s: %s\n", components[i].c_str(), path);
       manager->load(path, (components[i] + "Init").c_str());
