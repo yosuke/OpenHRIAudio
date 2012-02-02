@@ -89,8 +89,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)WavPlayer\$(ConfigurationName)"
-			IntermediateDirectory="WavPlayer\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)WavPlayerComp\$(ConfigurationName)"
+			IntermediateDirectory="WavPlayerComp\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(SolutionDir)rtm_config.vsprops"
 			CharacterSet="2"
@@ -98,7 +98,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="set PATH=$(rtm_path);%PYTHON_ROOT%\\;%PATH%&#x0D;&#x0A;for %%x in (*.idl) do rtm-skelwrapper.py --include-dir=&quot;&quot; --skel-suffix=Skel --stub-suffix=Stub --idl-file=%%x&#x0D;&#x0A;for %%x in (*.idl) do $(rtm_idlc) $(rtm_idlflags) %%x&#x0D;&#x0A;"
+				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\WavPlayerComp&quot; mkdir &quot;$(SolutionDir)\\WavPlayerComp&quot;&#x0D;&#x0A;set PATH=$(rtm_path);%PYTHON_ROOT%\\;%PATH%&#x0D;&#x0A;for %%x in (*.idl) do rtm-skelwrapper.py --include-dir=&quot;&quot; --skel-suffix=Skel --stub-suffix=Stub --idl-file=%%x&#x0D;&#x0A;for %%x in (*.idl) do $(rtm_idlc) $(rtm_idlflags) %%x&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -163,7 +163,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\WavPlayerComp.exe&quot; &quot;$(SolutionDir)\\components\\WavPlayer.exe&quot;"
+				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\components&quot; mkdir &quot;$(SolutionDir)\\components&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\WavPlayerComp.exe&quot; &quot;$(SolutionDir)\\components\\WavPlayer.exe&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
