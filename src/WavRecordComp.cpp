@@ -37,7 +37,7 @@ class DialogWin : public Gtk::Window
 
 public:
   DialogWin() {
-    Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_OPEN );
+    Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_SAVE );
     // 開く、キャンセルボタン
     diag.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
     diag.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);

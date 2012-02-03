@@ -156,7 +156,7 @@ RTC::ReturnCode_t WavRecord::onInitialize()
 #if defined(__linux)
 	bindParameter("FileName", m_filename, "wavrecord-default.wav");
 #ifdef SHARED_LIB
-	Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_OPEN );
+	Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_SAVE );
 	// 開く、キャンセルボタン
 	diag.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
 	diag.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
