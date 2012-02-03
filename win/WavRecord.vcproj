@@ -92,8 +92,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)WavRecord\$(ConfigurationName)"
-			IntermediateDirectory="WavRecord\$(ConfigurationName)"
+			OutputDirectory="$(ProjectDir)WavRecordComp\$(ConfigurationName)"
+			IntermediateDirectory="WavRecordComp\$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(SolutionDir)rtm_config.vsprops"
 			CharacterSet="2"
@@ -101,7 +101,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="set PATH=$(rtm_path);%PYTHON_ROOT%\\;%PATH%&#x0D;&#x0A;for %%x in (*.idl) do rtm-skelwrapper.py --include-dir=&quot;&quot; --skel-suffix=Skel --stub-suffix=Stub --idl-file=%%x&#x0D;&#x0A;for %%x in (*.idl) do $(rtm_idlc) $(rtm_idlflags) %%x&#x0D;&#x0A;"
+				CommandLine="if NOT EXIST &quot;$(SolutionDir)\\WavRecordComp&quot; mkdir &quot;$(SolutionDir)\\WavRecordComp&quot;&#x0D;&#x0A;set PATH=$(rtm_path);%PYTHON_ROOT%\\;%PATH%&#x0D;&#x0A;for %%x in (*.idl) do rtm-skelwrapper.py --include-dir=&quot;&quot; --skel-suffix=Skel --stub-suffix=Stub --idl-file=%%x&#x0D;&#x0A;for %%x in (*.idl) do $(rtm_idlc) $(rtm_idlflags) %%x&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"

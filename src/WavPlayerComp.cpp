@@ -56,6 +56,22 @@ public:
   };
 };
 #elif defined(_WIN32)
+static char WaveFileName[MAX_PATH*2]; 
+
+int OpenDiaog(HWND hwnd,LPCSTR Filter,char *FileName,DWORD Flags)
+{
+   OPENFILENAME OFN; 
+
+   ZeroMemory(&OFN,sizeof(OPENFILENAME));
+   OFN.lStructSize = sizeof(OPENFILENAME); 
+   OFN.hwndOwner = hwnd;
+   OFN.lpstrFilter =Filter;
+   OFN.lpstrFile =FileName;  
+   OFN.nMaxFile = MAX_PATH*2;
+   OFN.Flags = Flags;    
+   OFN.lpstrTitle = "File Open";
+   return (GetOpenFileName(&OFN));
+}
 #endif
 
 void MyModuleInit(RTC::Manager* manager)
@@ -86,6 +102,12 @@ int main (int argc, char** argv)
   DialogWin dialogwin;
   Gtk::Main::run( dialogwin );
 #elif defined(_WIN32)
+  //HINSTANCE hInst = GetModuleHandle( NULL );
+  HWND hwnd = GetWindow( NULL, GW_OWNER );
+  OpenDiaog(hwnd,"Wave Files(*.wav)\0*.wav\0All Files(*.*)\0*.*\0\0",
+					WaveFileName,OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY);
+  printf("Wave File Name:%s\n", WaveFileName);
+
 #endif
 
   setlocale(LC_ALL, "");

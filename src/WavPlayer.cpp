@@ -71,6 +71,7 @@ static const char* waveplayer_spec[] =
 #if defined(__linux)
 //nothing
 #elif defined(_WIN32)
+#ifdef SHARED_LIB
 int OpenDiaog(HWND hwnd,LPCSTR Filter,char *FileName,DWORD Flags)
 {
    OPENFILENAME OFN; 
@@ -85,7 +86,8 @@ int OpenDiaog(HWND hwnd,LPCSTR Filter,char *FileName,DWORD Flags)
    OFN.lpstrTitle = "ファイルを開く";
    return (GetOpenFileName(&OFN));
 }
-#endif
+#endif//SHARED_LIB
+#endif//defined(_WIN32)
 
 
 // </rtc-template>
@@ -140,6 +142,7 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
 #endif //SHARED_LIB
 #elif defined(_WIN32)
 	bindParameter("FileName", m_filename, "c:\\work\\wavrecord-default.wav");
+#ifdef SHARED_LIB
 	HWND hwnd = GetWindow( NULL, GW_OWNER );
 
 	ZeroMemory(WaveFileName,MAX_PATH*2);
@@ -151,7 +154,8 @@ RTC::ReturnCode_t WavPlayer::onInitialize()
 					WaveFileName,OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY))
 	            
 	//MessageBox(hwnd,strcat(WaveFileName,"\nを選択しました。"),"情報",MB_OK);
-#endif
+#endif//SHARED_LIB
+#endif//defined(_WIN32)
 
   RTC_DEBUG(("onInitialize finish"));
   RTC_INFO(("onInitialize finish"));
@@ -169,9 +173,13 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
   sfinfo.format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
 
   try {
-    //sfr = sf_open(m_filename.c_str(), SFM_READ, &sfinfo);
     sfr = sf_open(WaveFileName, SFM_READ, &sfinfo);
     RTC_INFO(("Wave File Name: %s\n", WaveFileName));
+	if (sf_format_check(&sfinfo) == 0) {
+		RTC_DEBUG(("invalid format"));
+		RTC_INFO(("Wave file invalid format"));
+		return RTC::RTC_ERROR;
+	}
     if (sfr == NULL) {
       //RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
       RTC_DEBUG(("unable to open file: %s", WaveFileName));

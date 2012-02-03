@@ -25,6 +25,12 @@
 #endif
 #include "intl.h"
 
+#if defined(__linux)
+static char WaveFileName[512*2]; 
+#elif defined(_WIN32)
+static char WaveFileName[MAX_PATH*2]; 
+#endif
+
 #define SAMPLE_RATE 44100
 #define BIT_DEPTH 16
 
@@ -59,6 +65,28 @@ static const char* wavrecord_spec[] =
     "conf.__doc__.usage", "\n  ::\n\n  $ wavrecord\n",
     ""
   };
+
+#if defined(__linux)
+//nothing
+#elif defined(_WIN32)
+#ifdef SHARED_LIB
+int OpenDiaog(HWND hwnd,LPCSTR Filter,char *FileName,DWORD Flags)
+{
+   OPENFILENAME OFN; 
+
+   ZeroMemory(&OFN,sizeof(OPENFILENAME));
+   OFN.lStructSize = sizeof(OPENFILENAME); 
+   OFN.hwndOwner = hwnd;
+   OFN.lpstrFilter =Filter;
+   OFN.lpstrFile =FileName;  
+   OFN.nMaxFile = MAX_PATH*2;
+   OFN.Flags = Flags;    
+   OFN.lpstrTitle = "ファイルを開く";
+   return (GetOpenFileName(&OFN));
+}
+#endif//SHARED_LIB
+#endif//defined(_WIN32)
+
 // </rtc-template>
 
 /*!
@@ -124,7 +152,39 @@ RTC::ReturnCode_t WavRecord::onInitialize()
   // </rtc-template>
   bindParameter("SampleRate", m_rate, "16000");
   bindParameter("ChannelNumbers", m_channels, "1");
-  bindParameter("FileName", m_filename, "");
+  //bindParameter("FileName", m_filename, "");
+#if defined(__linux)
+	bindParameter("FileName", m_filename, "wavrecord-default.wav");
+#ifdef SHARED_LIB
+	Gtk::FileChooserDialog diag( "ファイル選択", Gtk::FILE_CHOOSER_ACTION_SAVE );
+	// 開く、キャンセルボタン
+	diag.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
+	diag.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+	switch( diag.run() ){
+	case Gtk::RESPONSE_OK:
+	  strncpy(WaveFileName, (diag.get_filename()).c_str(), (diag.get_filename()).size());
+	  break;
+        case Gtk::RESPONSE_CANCEL:
+	  strncpy(WaveFileName, m_filename.c_str(), m_filename.size());
+	  break;
+	}
+	Gtk::MessageDialog( WaveFileName ).run();
+#endif //SHARED_LIB
+#elif defined(_WIN32)
+	bindParameter("FileName", m_filename, "c:\\work\\wavrecord-default.wav");
+#ifdef SHARED_LIB
+	HWND hwnd = GetWindow( NULL, GW_OWNER );
+
+	ZeroMemory(WaveFileName,MAX_PATH*2);
+	strncpy(WaveFileName, m_filename.c_str(), m_filename.size());
+	OpenDiaog(hwnd,"Wave Files(*.wav)\0*.wav\0All Files(*.*)\0*.*\0\0",
+					WaveFileName,OFN_CREATEPROMPT | OFN_OVERWRITEPROMPT);
+	            
+#endif//SHARED_LIB
+#endif//defined(_WIN32)
+
+  RTC_INFO(("onInitialize finish"));
+
   is_active = false;
 
   return RTC::RTC_OK;
@@ -133,7 +193,7 @@ RTC::ReturnCode_t WavRecord::onInitialize()
 RTC::ReturnCode_t WavRecord::onActivated(RTC::UniqueId ec_id)
 {
   RTC_DEBUG(("onActivated start"));
-  printf("Wave Record file: %s", m_filename.c_str());//TEST
+  RTC_INFO(("Wave File Name: %s\n", WaveFileName));
   sfinfo.samplerate = m_rate;
   sfinfo.channels = m_channels;
   sfinfo.format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
@@ -141,9 +201,9 @@ RTC::ReturnCode_t WavRecord::onActivated(RTC::UniqueId ec_id)
     RTC_DEBUG(("invalid format"));
     return RTC::RTC_ERROR;
   }
-  sfw = sf_open(m_filename.c_str(), SFM_WRITE, &sfinfo);
+  sfw = sf_open(WaveFileName, SFM_WRITE, &sfinfo);
   if (sfw == NULL) {
-    RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
+    RTC_DEBUG(("unable to open file: %s", WaveFileName));
     return RTC::RTC_ERROR;
   }
   is_active = true;
@@ -185,9 +245,14 @@ RTC::ReturnCode_t WavRecord::onFinalize()
 
 extern "C"
 {
-  void WavRecordInit(RTC::Manager* manager)
+  void WavRecordInit(RTC::Manager* manager, char * wave_file_name)
   {
     int i;
+#ifdef SHARED_LIB
+    //nothing
+#else
+    strcpy(WaveFileName, wave_file_name);
+#endif
     for (i = 0; strlen(wavrecord_spec[i]) != 0; i++);
     char** spec_intl = new char*[i + 1];
     for (int j = 0; j < i; j++) {
