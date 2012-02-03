@@ -25,6 +25,12 @@
 #include <fcntl.h>
 #include <list>
 #include <math.h>
+#if defined(__linux)
+#include <gtkmm.h>
+#elif defined(_WIN32)
+#include <windows.h>
+#include <CommDlg.h>
+#endif
 
 #include <rtm/Manager.h>
 #include <rtm/DataFlowComponentBase.h>
@@ -322,7 +328,7 @@ extern "C"
    *
    * @param manager Maneger Object
    */
-  DLL_EXPORT void WavRecordInit(RTC::Manager* manager);
+  DLL_EXPORT void WavRecordInit(RTC::Manager* manager, char * wave_file_name);
 };
 
 

@@ -170,9 +170,13 @@ RTC::ReturnCode_t WavPlayer::onActivated(RTC::UniqueId ec_id)
   sfinfo.format = SF_FORMAT_WAV | SF_FORMAT_PCM_16;
 
   try {
-    //sfr = sf_open(m_filename.c_str(), SFM_READ, &sfinfo);
     sfr = sf_open(WaveFileName, SFM_READ, &sfinfo);
     RTC_INFO(("Wave File Name: %s\n", WaveFileName));
+	if (sf_format_check(&sfinfo) == 0) {
+		RTC_DEBUG(("invalid format"));
+		RTC_INFO(("Wave file invalid format"));
+		return RTC::RTC_ERROR;
+	}
     if (sfr == NULL) {
       //RTC_DEBUG(("unable to open file: %s", m_filename.c_str()));
       RTC_DEBUG(("unable to open file: %s", WaveFileName));
