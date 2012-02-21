@@ -1,8 +1,10 @@
+SUBDIRS = thirdparty
+
 bin_PROGRAMS = openhriaudiomanager portaudiooutput portaudioinput pulseaudiooutput pulseaudioinput echocanceler echosuppressor samplingrateconverter noisereduction combfilter signalgeneration mixer dsarray channelselector beamforming autogaincontrol wavrecord wavplayer webrtcvad gatertc
 lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.la libechocanceler.la libechosuppressor.la libsamplingrateconverter.la libnoisereduction.la libcombfilter.la libsignalgeneration.la libmixer.la libdsarray.la libchannelselector.la libbeamforming.la libautogaincontrol.la libwavrecord.la libwavplayer.la libwebrtcvad.la libgate.la
 
 LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) -lm @LTLIBINTL@
-AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\" -I ../thirdparty/webrtc -I ../thirdparty/webrtc/common_audio/vad/include
+AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\" -I thirdparty/webrtc -I thirdparty/webrtc/common_audio/vad/include
 
 include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h WavPlayer.h Gate.h windowing.h arch.h os_support.h fftwrap.h smallft.h
 
@@ -87,11 +89,9 @@ wavplayer_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)
 wavplayer_LDADD = $(GTKMM_LIBS)
 
 libwebrtcvad_la_SOURCES = WebRTCVAD.cpp
-libwebrtcvad_la_LIBADD = libwebrtccommonaudio.la
-#libwebrtcvad_la_LDFLAGS =  -L. -lwebrtc
+libwebrtcvad_la_LIBADD = thirdparty/webrtc/common_audio/libwebrtccommonaudio.a
 webrtcvad_SOURCES = WebRTCVADComp.cpp
-#webrtcvad_LDFLAGS = -L. -lwebrtc
-webrtcvad_LDADD = libwebrtcvad.la libwebrtccommonaudio.la
+webrtcvad_LDADD = libwebrtcvad.la
 
 libgate_la_SOURCES = Gate.cpp
 gatertc_SOURCES = GateComp.cpp

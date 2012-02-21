@@ -88,8 +88,8 @@ AC_CONFIG_FILES([Makefile
                  src/Makefile
                  po/Makefile.in
                  pkg/Makefile
-                 thirdparty/Makefile
-                 thirdparty/webrtc/Makefile
-                 thirdparty/webrtc/common_audio/Makefile])
+                 src/thirdparty/Makefile
+                 src/thirdparty/webrtc/Makefile
+                 src/thirdparty/webrtc/common_audio/Makefile])
 
 AC_OUTPUT
