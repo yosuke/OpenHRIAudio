@@ -1,4 +1,4 @@
-SUBDIRS = src po pkg
+SUBDIRS = src po pkg thirdparty
 
 EXTRA_DIST = autogen.sh configure.ac config.rpath mkinstalldirs m4/Makefile.in src/intl.h
 

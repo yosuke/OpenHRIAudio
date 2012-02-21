@@ -88,6 +88,8 @@ AC_CONFIG_FILES([Makefile
                  src/Makefile
                  po/Makefile.in
                  pkg/Makefile
-                 pkg/nsis/Makefile])
+                 thirdparty/Makefile
+                 thirdparty/webrtc/Makefile
+                 thirdparty/webrtc/common_audio/Makefile])
 
 AC_OUTPUT
