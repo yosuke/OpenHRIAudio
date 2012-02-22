@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenHRIAudio 1.06\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-11-14 15:53+0900\n"
+"POT-Creation-Date: 2012-02-21 16:52+0900\n"
 "PO-Revision-Date: 2011-11-14 15:50+0900\n"
 "Last-Translator: Yosuke Matsusaka\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
@@ -43,7 +43,8 @@ msgstr "ゲイン調整のバイト数"
 #: src/ChannelSelector.cpp:118 src/CombFilter.cpp:118 src/DSArray.cpp:201
 #: src/NoiseReduction.cpp:171 src/PortAudioOutput.cpp:137
 #: src/PulseAudioInput.cpp:115 src/PulseAudioOutput.cpp:131
-#: src/SamplingRateConverter.cpp:121 src/WavRecord.cpp:111
+#: src/SamplingRateConverter.cpp:121 src/WavRecord.cpp:143
+#: src/WebRTCVAD.cpp:106 src/Gate.cpp:80
 msgid "Audio data input."
 msgstr "音声データ入力"
 
@@ -65,11 +66,11 @@ msgstr "固定角度モードにおけるビームを向ける角度の設定 [d
 
 #: src/BeamForming.cpp:54 src/CombFilter.cpp:48 src/DSArray.cpp:54
 #: src/NoiseReduction.cpp:61 src/SamplingRateConverter.cpp:48
-#: src/WavRecord.cpp:50
+#: src/WavRecord.cpp:60
 msgid "Sample rate of audio input."
 msgstr "入力音声データのサンプリング周波数設定"
 
-#: src/BeamForming.cpp:57 src/DSArray.cpp:57 src/WavRecord.cpp:53
+#: src/BeamForming.cpp:57 src/DSArray.cpp:57 src/WavRecord.cpp:63
 msgid "Number of audio input channels."
 msgstr "入力する音声データのチャンネル数設定"
 
@@ -80,7 +81,7 @@ msgstr "角度データ入力"
 #: src/BeamForming.cpp:121 src/ChannelSelector.cpp:126 src/CombFilter.cpp:126
 #: src/DSArray.cpp:206 src/EchoCanceler.cpp:115 src/EchoSuppressor.cpp:119
 #: src/Mixer.cpp:144 src/NoiseReduction.cpp:179
-#: src/SamplingRateConverter.cpp:129
+#: src/SamplingRateConverter.cpp:129 src/WebRTCVAD.cpp:114 src/Gate.cpp:86
 msgid "Audio data output."
 msgstr "音声データ出力"
 
@@ -183,6 +184,7 @@ msgstr "出力する音声データのフォーマット設定"
 
 #: src/PortAudioOutput.cpp:56 src/PulseAudioOutput.cpp:56
 #: src/SamplingRateConverter.cpp:51 src/SignalGeneration.cpp:48
+#: src/WavPlayer.cpp:57
 msgid "Sample rate of audio output."
 msgstr "出力する音声データのサンプリング周波数設定"
 
@@ -222,25 +224,53 @@ msgstr "出力する音声データのバイトサイズ"
 msgid "Signal generation component"
 msgstr "信号生成コンポーネント"
 
-#: src/SignalGeneration.cpp:51
+#: src/SignalGeneration.cpp:51 src/WavPlayer.cpp:60
 msgid "Frequency of the signal to genarate."
 msgstr "生成する信号の周波数"
 
-#: src/SignalGeneration.cpp:54
+#: src/SignalGeneration.cpp:54 src/WavPlayer.cpp:63
 msgid "Amplitude of the signal to generate."
 msgstr "生成する信号の振幅"
 
-#: src/SignalGeneration.cpp:57
+#: src/SignalGeneration.cpp:57 src/WavPlayer.cpp:66
 msgid "Mode (Square, Triangle or Sin)."
 msgstr "モード（矩形波、三角波、サイン波）"
 
-#: src/WavRecord.cpp:37
+#: src/WavRecord.cpp:43
 msgid "Sound record component."
 msgstr "録音コンポーネント"
 
-#: src/WavRecord.cpp:54
+#: src/WavRecord.cpp:64
 msgid "Name of file to save the recorded data."
 msgstr "録音したデータを保存するファイル名"
+
+#: src/WavPlayer.cpp:40
+#, fuzzy
+msgid "Wave player component"
+msgstr "オーディオミキサーコンポーネント"
+
+#: src/WavPlayer.cpp:122
+#, fuzzy
+msgid "Audio data out packet."
+msgstr "パケット化した音声データ"
+
+#: src/WebRTCVAD.cpp:34
+msgid "WebRTC based voice activity detection (and filtering) component."
+msgstr ""
+
+#: src/WebRTCVAD.cpp:44
+msgid "Filter length to smooth voice detection result."
+msgstr ""
+
+#: src/Gate.cpp:34
+#, fuzzy
+msgid "Gate component."
+msgstr "録音コンポーネント"
+
+#: src/Gate.cpp:82
+#, fuzzy
+msgid "Gate data input."
+msgstr "角度データ入力"
 
 #~ msgid "Gain of the adaptive filter"
 #~ msgstr "適応フィルタ倍率"

@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.56])
 AC_INIT([OpenHRIAudio], [2.00], [yosuke.matsusaka@aist.go.jp])
-AM_INIT_AUTOMAKE([1.10])
+AM_INIT_AUTOMAKE([1.10 tar-ustar filename-length-max=299])
 LT_INIT
 
 AC_CANONICAL_HOST
@@ -88,6 +88,7 @@ AC_CONFIG_FILES([Makefile
                  src/Makefile
                  po/Makefile.in
                  pkg/Makefile
+                 pkg/nsis/Makefile
                  src/thirdparty/Makefile
                  src/thirdparty/webrtc/Makefile
                  src/thirdparty/webrtc/common_audio/Makefile])

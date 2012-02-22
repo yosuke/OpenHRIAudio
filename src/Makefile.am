@@ -6,7 +6,7 @@ lib_LTLIBRARIES = libportaudiortc.la libpulseaudiooutput.la libpulseaudioinput.l
 LIBS = @LDFLAGS@ @LIBS@ $(OPENRTM_LIBS) $(PULSEAUDIO_LIBS) -lm @LTLIBINTL@
 AM_CPPFLAGS = -g -Wall @CFLAGS@ $(OPENRTM_CFLAGS) $(PULSEAUDIO_CFLAGS) @DEFS@ -DLOCALEDIR=\"$(localedir)\" -I thirdparty/webrtc -I thirdparty/webrtc/common_audio/vad/include
 
-include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h WavPlayer.h Gate.h windowing.h arch.h os_support.h fftwrap.h smallft.h
+include_HEADERS = DescriptablePort.h PortAudioOutput.h PortAudioInput.h PulseAudioOutput.h PulseAudioInput.h EchoCanceler.h EchoSuppressor.h SamplingRateConverter.h NoiseReduction.h CombFilter.h SignalGeneration.h Mixer.h DSArray.h ChannelSelector.h BeamForming.h AutoGainControl.h WavRecord.h WavPlayer.h Gate.h WebRTCVAD.h windowing.h arch.h os_support.h fftwrap.h smallft.h
 
 openhriaudiomanager_SOURCES = OpenHRIAudioManager.cpp
 openhriaudiomanager_CPPFLAGS = $(AM_CPPFLAGS) $(GTKMM_CFLAGS)

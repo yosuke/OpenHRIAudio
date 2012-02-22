@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhriaudio 2.00\n"
 "Report-Msgid-Bugs-To: yosuke.matsusaka@aist.go.jp\n"
-"POT-Creation-Date: 2011-11-14 15:53+0900\n"
+"POT-Creation-Date: 2012-02-21 16:52+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,8 @@ msgstr ""
 #: src/ChannelSelector.cpp:118 src/CombFilter.cpp:118 src/DSArray.cpp:201
 #: src/NoiseReduction.cpp:171 src/PortAudioOutput.cpp:137
 #: src/PulseAudioInput.cpp:115 src/PulseAudioOutput.cpp:131
-#: src/SamplingRateConverter.cpp:121 src/WavRecord.cpp:111
+#: src/SamplingRateConverter.cpp:121 src/WavRecord.cpp:143
+#: src/WebRTCVAD.cpp:106 src/Gate.cpp:80
 msgid "Audio data input."
 msgstr ""
 
@@ -65,11 +66,11 @@ msgstr ""
 
 #: src/BeamForming.cpp:54 src/CombFilter.cpp:48 src/DSArray.cpp:54
 #: src/NoiseReduction.cpp:61 src/SamplingRateConverter.cpp:48
-#: src/WavRecord.cpp:50
+#: src/WavRecord.cpp:60
 msgid "Sample rate of audio input."
 msgstr ""
 
-#: src/BeamForming.cpp:57 src/DSArray.cpp:57 src/WavRecord.cpp:53
+#: src/BeamForming.cpp:57 src/DSArray.cpp:57 src/WavRecord.cpp:63
 msgid "Number of audio input channels."
 msgstr ""
 
@@ -80,7 +81,7 @@ msgstr ""
 #: src/BeamForming.cpp:121 src/ChannelSelector.cpp:126 src/CombFilter.cpp:126
 #: src/DSArray.cpp:206 src/EchoCanceler.cpp:115 src/EchoSuppressor.cpp:119
 #: src/Mixer.cpp:144 src/NoiseReduction.cpp:179
-#: src/SamplingRateConverter.cpp:129
+#: src/SamplingRateConverter.cpp:129 src/WebRTCVAD.cpp:114 src/Gate.cpp:86
 msgid "Audio data output."
 msgstr ""
 
@@ -181,6 +182,7 @@ msgstr ""
 
 #: src/PortAudioOutput.cpp:56 src/PulseAudioOutput.cpp:56
 #: src/SamplingRateConverter.cpp:51 src/SignalGeneration.cpp:48
+#: src/WavPlayer.cpp:57
 msgid "Sample rate of audio output."
 msgstr ""
 
@@ -220,22 +222,46 @@ msgstr ""
 msgid "Signal generation component"
 msgstr ""
 
-#: src/SignalGeneration.cpp:51
+#: src/SignalGeneration.cpp:51 src/WavPlayer.cpp:60
 msgid "Frequency of the signal to genarate."
 msgstr ""
 
-#: src/SignalGeneration.cpp:54
+#: src/SignalGeneration.cpp:54 src/WavPlayer.cpp:63
 msgid "Amplitude of the signal to generate."
 msgstr ""
 
-#: src/SignalGeneration.cpp:57
+#: src/SignalGeneration.cpp:57 src/WavPlayer.cpp:66
 msgid "Mode (Square, Triangle or Sin)."
 msgstr ""
 
-#: src/WavRecord.cpp:37
+#: src/WavRecord.cpp:43
 msgid "Sound record component."
 msgstr ""
 
-#: src/WavRecord.cpp:54
+#: src/WavRecord.cpp:64
 msgid "Name of file to save the recorded data."
+msgstr ""
+
+#: src/WavPlayer.cpp:40
+msgid "Wave player component"
+msgstr ""
+
+#: src/WavPlayer.cpp:122
+msgid "Audio data out packet."
+msgstr ""
+
+#: src/WebRTCVAD.cpp:34
+msgid "WebRTC based voice activity detection (and filtering) component."
+msgstr ""
+
+#: src/WebRTCVAD.cpp:44
+msgid "Filter length to smooth voice detection result."
+msgstr ""
+
+#: src/Gate.cpp:34
+msgid "Gate component."
+msgstr ""
+
+#: src/Gate.cpp:82
+msgid "Gate data input."
 msgstr ""
